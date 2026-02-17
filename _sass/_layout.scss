@@ -1,0 +1,98 @@
+// Layout - wrapper, page structure, grid
+
+.wrapper {
+  max-width: $wrapper-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $space-md;
+  padding-right: $space-md;
+
+  @media (min-width: $bp-md) {
+    padding-left: $space-lg;
+    padding-right: $space-lg;
+  }
+
+  @media (min-width: $bp-lg) {
+    padding-left: $space-xl;
+    padding-right: $space-xl;
+  }
+}
+
+.page-content {
+  padding-top: unquote("clamp(1.5rem, 3vw, 2rem)");
+  padding-bottom: unquote("clamp(3rem, 5vw, 4rem)");
+
+  @media (min-width: $bp-md) {
+    padding-top: $space-lg;
+    padding-bottom: $space-2xl;
+  }
+}
+
+.page-wrapper {
+  .page-content-wrapper {
+    @media (min-width: $bp-lg) {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: $space-lg;
+      align-items: start;
+    }
+  }
+
+  .page-main-content {
+    min-width: 0;
+  }
+}
+
+.post-wrapper {
+  .post-content-wrapper {
+    @media (min-width: $bp-lg) {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: $space-lg;
+      align-items: start;
+    }
+  }
+
+  .post-content {
+    min-width: 0;
+  }
+}
+
+.page-sidebar,
+.post-sidebar {
+  @media (max-width: #{$bp-lg - 1px}) {
+    margin-top: $space-lg;
+  }
+}
+
+.sidebar-widget {
+  margin-bottom: $space-lg;
+  padding: $space-md;
+  background: $color-background-alt;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin-top: 0;
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-text-muted;
+  }
+}
+
+.related-posts-grid {
+  display: grid;
+  gap: $space-md;
+  margin-top: $space-sm;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.related-post-content {
+  .related-post-title {
+    font-size: 1rem;
+  }
+}

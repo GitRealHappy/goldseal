@@ -1,0 +1,53 @@
+<header class="site-header">
+  <div class="header-container">
+    <div class="main-header">
+      <div class="header-content">
+        <!-- Logo and Company Info -->
+        <div class="brand">
+          <a href="{{ '/' | relative_url }}" class="logo-link">
+            <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="{{ site.company.name }} Logo" class="logo">
+            <div class="company-info">
+              <h1 class="company-name">{{ site.company.name }}</h1>
+              <p class="company-tagline">{{ site.company.license }}</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="header-contact">
+          <div class="contact-item">
+            <span class="contact-label">Call Now:</span>
+            <a href="tel:{{ site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }}" class="contact-phone">{{ site.company.phone }}</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Email:</span>
+            <a href="mailto:{{ site.company.email }}" class="contact-email">{{ site.company.email }}</a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-navigation">
+      <div class="nav-container">
+        <ul class="nav-menu">
+          {% for nav_item in site.navigation %}
+          <li class="nav-item">
+            <a href="{{ nav_item.url | relative_url }}" 
+               class="nav-link{% if page.url == nav_item.url %} active{% endif %}">
+              {{ nav_item.name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,243 @@
+---
+layout: default
+---
+
+<div class="post-wrapper">
+  <!-- Post Header -->
+  <header class="post-header">
+    {% if page.featured_image %}
+    <div class="post-featured-image">
+      <img src="{{ page.featured_image | relative_url }}" alt="{{ page.title | escape }}" class="featured-image">
+    </div>
+    {% endif %}
+    
+    <div class="post-header-content animate-on-scroll animate-up">
+      <!-- Breadcrumb Navigation -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item">
+            <a href="{{ '/' | relative_url }}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{{ '/articles/' | relative_url }}">Articles</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ page.title | escape }}
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Post Title and Meta -->
+      <h1 class="post-title">{{ page.title | escape }}</h1>
+      
+      {% if page.excerpt %}
+      <p class="post-excerpt">{{ page.excerpt | strip_html | truncate: 200 }}</p>
+      {% endif %}
+
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">Published:</span>
+          <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%B %d, %Y" }}
+          </time>
+        </div>
+        
+        {% if page.author %}
+        <div class="post-meta-item">
+          <span class="meta-label">By:</span>
+          <span class="post-author">{{ page.author }}</span>
+        </div>
+        {% endif %}
+
+        {% if page.categories.size > 0 %}
+        <div class="post-meta-item">
+          <span class="meta-label">Category:</span>
+          <span class="post-categories">
+            {% for category in page.categories %}
+            <a href="{{ '/articles/category/' | append: category | downcase | relative_url }}" class="category-link">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        </div>
+        {% endif %}
+
+        {% if page.tags.size > 0 %}
+        <div class="post-meta-item">
+          <span class="meta-label">Tags:</span>
+          <span class="post-tags">
+            {% for tag in page.tags %}
+            <a href="{{ '/articles/tag/' | append: tag | downcase | relative_url }}" class="tag-link">#{{ tag }}</a>{% unless forloop.last %} {% endunless %}
+            {% endfor %}
+          </span>
+        </div>
+        {% endif %}
+
+        <div class="post-meta-item">
+          <span class="meta-label">Reading time:</span>
+          <span class="reading-time">{{ content | number_of_words | divided_by: 200 | ceil }} min read</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <div class="post-content-wrapper">
+    <article class="post-content">
+      {{ content }}
+    </article>
+
+    <!-- Post Sidebar -->
+    <aside class="post-sidebar">
+      <!-- Table of Contents (if enabled) -->
+      {% if page.toc %}
+      <div class="sidebar-widget toc-widget animate-on-scroll animate-right">
+        <h3>Table of Contents</h3>
+        <div id="toc"></div>
+      </div>
+      {% endif %}
+
+      <!-- Contact Widget -->
+      <div class="sidebar-widget contact-widget animate-on-scroll animate-right">
+        <h3>Need Professional Service?</h3>
+        <p>Don't tackle mechanical issues alone. Our licensed professionals are here to help.</p>
+        <div class="contact-info">
+          <p class="phone-large">
+            <a href="tel:{{ site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }}">
+              {{ site.company.phone }}
+            </a>
+          </p>
+          <p class="emergency-note">24/7 Emergency Service Available</p>
+        </div>
+        <a href="{{ '/contact/' | relative_url }}" class="btn btn-primary">Get Free Quote</a>
+      </div>
+
+      <!-- Related Services -->
+      <div class="sidebar-widget services-widget animate-on-scroll animate-right">
+        <h3>Our Services</h3>
+        <ul class="services-list">
+          {% for service in site.services %}
+          <li>
+            <a href="{{ '/services/' | relative_url }}#{{ service.name | downcase | replace: ' ', '-' }}">
+              {{ service.name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Post Footer -->
+  <footer class="post-footer animate-on-scroll animate-up">
+    <!-- Social Sharing -->
+    <div class="post-sharing">
+      <h3>Share This Article</h3>
+      <div class="sharing-buttons">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}" 
+           target="_blank" rel="noopener" class="share-btn facebook" aria-label="Share on Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook
+        </a>
+        <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url | url_encode }}&text={{ page.title | url_encode }}" 
+           target="_blank" rel="noopener" class="share-btn twitter" aria-label="Share on Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+          Twitter
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" 
+           target="_blank" rel="noopener" class="share-btn linkedin" aria-label="Share on LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <!-- Post Navigation -->
+    <nav class="post-navigation">
+      {% if page.previous.url %}
+      <div class="nav-previous">
+        <a href="{{ page.previous.url | relative_url }}" class="nav-link">
+          <span class="nav-direction">← Previous Article</span>
+          <span class="nav-title">{{ page.previous.title }}</span>
+        </a>
+      </div>
+      {% endif %}
+      
+      {% if page.next.url %}
+      <div class="nav-next">
+        <a href="{{ page.next.url | relative_url }}" class="nav-link">
+          <span class="nav-direction">Next Article →</span>
+          <span class="nav-title">{{ page.next.title }}</span>
+        </a>
+      </div>
+      {% endif %}
+    </nav>
+  </footer>
+
+  <!-- Related Posts -->
+  {% assign related_posts = site.related_posts | limit: 3 %}
+  {% if related_posts.size > 0 %}
+  <section class="related-posts">
+    <h2>Related Articles</h2>
+    <div class="related-posts-grid stagger-children">
+      {% for post in related_posts %}
+      <article class="related-post animate-on-scroll animate-up">
+        {% if post.featured_image %}
+        <div class="related-post-image">
+          <a href="{{ post.url | relative_url }}">
+            <img src="{{ post.featured_image | relative_url }}" alt="{{ post.title | escape }}">
+          </a>
+        </div>
+        {% endif %}
+        <div class="related-post-content">
+          <h3 class="related-post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h3>
+          <p class="related-post-excerpt">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+          <div class="related-post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</div>
+
+<!-- Table of Contents JavaScript (if enabled) -->
+{% if page.toc %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tocContainer = document.getElementById('toc');
+  const headings = document.querySelectorAll('.post-content h2, .post-content h3, .post-content h4');
+  
+  if (headings.length > 0 && tocContainer) {
+    const tocList = document.createElement('ul');
+    tocList.className = 'toc-list';
+    
+    headings.forEach(function(heading, index) {
+      const id = 'heading-' + index;
+      heading.id = id;
+      
+      const listItem = document.createElement('li');
+      listItem.className = 'toc-item toc-' + heading.tagName.toLowerCase();
+      
+      const link = document.createElement('a');
+      link.href = '#' + id;
+      link.textContent = heading.textContent;
+      link.className = 'toc-link';
+      
+      listItem.appendChild(link);
+      tocList.appendChild(listItem);
+    });
+    
+    tocContainer.appendChild(tocList);
+  }
+});
+</script>
+{% endif %}

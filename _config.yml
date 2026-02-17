@@ -1,0 +1,133 @@
+# Site settings
+title: "Gold Seal Mechanical"
+email: "info@goldseal.com"
+description: >-
+  Professional plumbing, heating, air conditioning, and gas services.
+  Licensed and insured mechanical contractors serving residential and commercial clients
+  with quality workmanship and reliable service.
+
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://goldseal.com" # the base hostname & protocol for your site
+
+# Company information
+company:
+  name: "Gold Seal Mechanical"
+  phone: "(555) 123-4567"
+  emergency_phone: "(555) 123-HELP"
+  email: "info@goldseal.com"
+  address: "123 Service Street, Your City, State 12345"
+  license: "Licensed & Insured"
+  service_areas:
+    - "Your City"
+    - "Nearby Town"
+    - "Another Area"
+
+# Navigation
+navigation:
+  - name: "Home"
+    url: "/"
+  - name: "Services"
+    url: "/services/"
+  - name: "Testimonials"
+    url: "/testimonials/"
+  - name: "Articles"
+    url: "/articles/"
+  - name: "Rebates"
+    url: "/rebates/"
+  - name: "Contact"
+    url: "/contact/"
+
+# Services offered
+services:
+  - name: "Plumbing"
+    description: "Complete plumbing services for residential and commercial properties"
+  - name: "Heating"
+    description: "Heating system installation, repair, and maintenance"
+  - name: "Air Conditioning"
+    description: "AC installation, repair, and seasonal maintenance"
+  - name: "Gas Work"
+    description: "Licensed gas line installation and appliance connections"
+
+# Social media
+social:
+  facebook: "https://facebook.com/goldsealmechanical"
+  twitter: "https://twitter.com/goldsealmech"
+  linkedin: "https://linkedin.com/company/gold-seal-mechanical"
+  google_business: "https://g.page/goldsealmechanical"
+
+# Blog settings
+blog:
+  paginate: 6
+  paginate_path: "/articles/page:num/"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# Pagination (for blog index at articles/index.html)
+paginate: 6
+paginate_path: "/articles/page:num/"
+
+# Collections
+collections:
+  testimonials:
+    output: false
+  services:
+    output: true
+    permalink: /services/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Gold Seal Mechanical"
+      permalink: /articles/:year/:month/:day/:title/
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
+      type: "services"
+    values:
+      layout: "page"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - LICENSE
+  - .gitignore
+
+# SEO settings
+google_analytics: # Add your GA tracking ID here
+google_site_verification: # Add your Google site verification code here
+
+# Contact form settings (for future implementation)
+contact_form:
+  action: "#" # Will be updated when form handling is implemented
+  method: "POST"
+
+# Emergency service
+emergency:
+  available: true
+  hours: "24/7 Emergency Service Available"
+  message: "Call now for emergency plumbing, heating, or gas service"

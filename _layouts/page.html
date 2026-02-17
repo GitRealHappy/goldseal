@@ -1,0 +1,154 @@
+---
+layout: default
+---
+
+<div class="page-wrapper">
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="page-header-content">
+      {% if page.hero_image %}
+      <div class="page-hero" style="background-image: url('{{ page.hero_image | relative_url }}');">
+        <div class="page-hero-overlay">
+          <div class="page-hero-content">
+            <h1 class="page-title">{{ page.title | escape }}</h1>
+            {% if page.subtitle %}
+            <p class="page-subtitle">{{ page.subtitle | escape }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="page-title-section animate-on-scroll animate-up">
+        <h1 class="page-title">{{ page.title | escape }}</h1>
+        {% if page.subtitle %}
+        <p class="page-subtitle">{{ page.subtitle | escape }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    
+    <!-- Breadcrumb Navigation -->
+    {% unless page.hide_breadcrumbs %}
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="{{ '/' | relative_url }}">Home</a>
+        </li>
+        {% assign url_parts = page.url | split: '/' %}
+        {% assign breadcrumb_url = '' %}
+        {% for part in url_parts %}
+          {% if part != '' and part != 'index.html' %}
+            {% assign breadcrumb_url = breadcrumb_url | append: '/' | append: part %}
+            {% if forloop.last %}
+            <li class="breadcrumb-item active" aria-current="page">
+              {{ page.title | default: part | replace: '-', ' ' | replace: '_', ' ' | capitalize }}
+            </li>
+            {% else %}
+            <li class="breadcrumb-item">
+              <a href="{{ breadcrumb_url | relative_url }}">
+                {{ part | replace: '-', ' ' | replace: '_', ' ' | capitalize }}
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </nav>
+    {% endunless %}
+  </header>
+
+  <!-- Page Content -->
+  <div class="page-content-wrapper">
+    <article class="page-content">
+      <!-- Page Meta Information -->
+      {% if page.description %}
+      <div class="page-description">
+        <p class="lead">{{ page.description }}</p>
+      </div>
+      {% endif %}
+
+      <!-- Main Content -->
+      <div class="page-main-content animate-on-scroll animate-up">
+        {{ content }}
+      </div>
+
+      <!-- Page Footer/Meta -->
+      {% if page.last_modified_at or page.author %}
+      <footer class="page-meta">
+        {% if page.last_modified_at %}
+        <p class="page-updated">
+          <strong>Last updated:</strong> 
+          <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">
+            {{ page.last_modified_at | date: "%B %d, %Y" }}
+          </time>
+        </p>
+        {% endif %}
+        {% if page.author %}
+        <p class="page-author">
+          <strong>Author:</strong> {{ page.author }}
+        </p>
+        {% endif %}
+      </footer>
+      {% endif %}
+    </article>
+
+    <!-- Sidebar (if enabled) -->
+    {% if page.sidebar %}
+    <aside class="page-sidebar">
+      {% if page.sidebar == 'services' %}
+        <div class="sidebar-widget animate-on-scroll animate-right">
+          <h3>Our Services</h3>
+          <ul class="services-menu">
+            {% for service in site.services %}
+            <li>
+              <a href="{{ '/services/' | relative_url }}#{{ service.name | downcase | replace: ' ', '-' }}">
+                {{ service.name }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if page.sidebar == 'contact' or page.sidebar == 'services' %}
+        <div class="sidebar-widget contact-widget animate-on-scroll animate-right">
+          <h3>Need Service?</h3>
+          <div class="contact-info">
+            <p><strong>Call Now:</strong></p>
+            <p class="phone-large">
+              <a href="tel:{{ site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }}">
+                {{ site.company.phone }}
+              </a>
+            </p>
+            <p><strong>Emergency Service:</strong></p>
+            <p class="phone-emergency">
+              <a href="tel:{{ site.company.emergency_phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }}">
+                {{ site.company.emergency_phone }}
+              </a>
+            </p>
+          </div>
+          <a href="{{ '/contact/' | relative_url }}" class="btn btn-primary">Get Quote</a>
+        </div>
+      {% endif %}
+    </aside>
+    {% endif %}
+  </div>
+
+  <!-- Call to Action Section (if enabled) -->
+  {% if page.show_cta %}
+  <section class="page-cta animate-on-scroll animate-up">
+    <div class="cta-content">
+      <h2>{{ page.cta_title | default: "Ready to Get Started?" }}</h2>
+      <p>{{ page.cta_text | default: "Contact us today for professional mechanical services you can trust." }}</p>
+      <div class="cta-buttons">
+        <a href="tel:{{ site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }}" class="btn btn-primary btn-large">
+          Call {{ site.company.phone }}
+        </a>
+        <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary btn-large">
+          Get Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+</div>

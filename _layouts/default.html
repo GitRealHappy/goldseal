@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head.html %}
+
+  <body class="{% if page.body_class %}{{ page.body_class }}{% endif %}">
+
+    {% include header.html %}
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    {% include footer.html %}
+
+    <!-- JavaScript -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    
+    <!-- Mobile menu functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navigation = document.querySelector('.main-navigation');
+        
+        if (mobileToggle && navigation) {
+          mobileToggle.addEventListener('click', function() {
+            navigation.classList.toggle('mobile-open');
+            mobileToggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+          });
+        }
+      });
+    </script>
+
+    <!-- Google Analytics -->
+    {% if site.google_analytics %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
+
+  </body>
+
+</html>

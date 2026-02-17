@@ -1,0 +1,83 @@
+// Scroll-triggered slide-in animations (triggered by .in-view from JS)
+
+$animation-duration: 0.55s;
+$animation-easing: cubic-bezier(0.22, 1, 0.36, 1);
+$animation-delay-stagger: 0.1s;
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Base: hidden until in view
+.animate-on-scroll {
+  opacity: 0;
+}
+
+// When in view (class added by JS) - default direction is up
+.animate-on-scroll.in-view {
+  animation-name: slideInUp;
+  animation-duration: $animation-duration;
+  animation-timing-function: $animation-easing;
+  animation-fill-mode: forwards;
+}
+
+.animate-on-scroll.in-view.animate-up {
+  animation-name: slideInUp;
+}
+
+.animate-on-scroll.in-view.animate-left {
+  animation-name: slideInLeft;
+}
+
+.animate-on-scroll.in-view.animate-right {
+  animation-name: slideInRight;
+}
+
+// Stagger children (add .stagger-children to parent)
+.stagger-children .animate-on-scroll.in-view {
+  @for $i from 0 through 12 {
+    &:nth-child(#{$i + 1}) {
+      animation-delay: #{$i * $animation-delay-stagger};
+    }
+  }
+}
+
+// Respect reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+  }
+
+  .animate-on-scroll.in-view {
+    animation: none;
+  }
+}
