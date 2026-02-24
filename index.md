@@ -10,12 +10,7 @@ hide_breadcrumbs: true
 
 Gold Seal Mechanical delivers professional plumbing, heating, air conditioning, and gas work for residential and commercial clients. We're licensed, insured, and committed to quality workmanship.
 
-### Our Services
-
-- **Plumbing** — Repairs, installations, and maintenance
-- **Heating** — Furnaces, boilers, and heating systems
-- **Air Conditioning** — AC installation, repair, and seasonal service
-- **Gas Work** — Licensed gas line and appliance connections
+{% include services-grid.html %}
 
 ### Why Choose Gold Seal?
 

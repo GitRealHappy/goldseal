@@ -1,0 +1,76 @@
+// Services Grid Section
+.services-section {
+  width: 100%;
+  margin: $space-xl 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Center content vertically
+  align-items: flex-start;
+  padding: unquote("clamp(40px, 5vw, 60px)");
+  background-color: $color-background-alt;
+  border-radius: $radius-lg;
+  text-decoration: none;
+  color: $color-text;
+  transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
+  height: 100%;
+  border: 1px solid transparent; // Invisible border to prevent layout shift on hover if we add border
+  box-shadow: $shadow-sm;
+
+  // Subtle contrast between cards is handled by the gap and background
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+    text-decoration: none;
+    border-color: $color-primary;
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: $space-sm;
+    font-size: 1.5rem;
+    color: $color-text;
+    font-weight: 700;
+  }
+
+  p {
+    margin-bottom: $space-md;
+    color: $color-text-muted;
+    line-height: 1.5;
+    font-size: 1.05rem;
+  }
+
+  .service-link {
+    font-weight: 600;
+    color: $color-primary;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto; // Push to bottom if content varies, but we are centering vertically so this might conflict.
+    // User asked to "Center content vertically".
+    // If we use justify-content: center, margin-top: auto is not needed/effective.
+  }
+  
+  // Ensure the link looks like a button/link
+  .service-link::after {
+    content: '→';
+    transition: transform $transition-base;
+  }
+
+  &:hover .service-link::after {
+    transform: translateX(4px);
+  }
+}
