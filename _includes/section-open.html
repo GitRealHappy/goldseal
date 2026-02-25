@@ -1,0 +1,3 @@
+{% comment %} Opens a surface section; pair with section-close.html. Param: surface (optional, default surface-1). markdown="1" so content between section-open and section-close is rendered as markdown. {% endcomment %}
+<section class="band section section--{{ include.surface | default: 'surface-1' }}">
+  <div class="band__inner" markdown="1">

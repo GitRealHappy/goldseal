@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<article class="home-page">
+  {% include hero-band.html %}
+
+  <section class="section section--surface-1 section--tight" aria-labelledby="intro-heading">
+    <div class="band__inner">
+      <h2 id="intro-heading" class="section-title">Trusted Mechanical Services</h2>
+      <p class="section-lead">{{ page.description | default: site.description }}</p>
+      {{ content }}
+    </div>
+  </section>
+
+  {% include services-section.html %}
+
+  <section class="section section--surface-2 section--tight band" aria-labelledby="trust-heading">
+    <div class="band__inner">
+      {% include trust-block.html %}
+    </div>
+  </section>
+
+  {% include cta-band.html %}
+</article>

@@ -1,25 +1,27 @@
 // UI components - buttons, header, footer, cards, breadcrumbs
 
-// Buttons (gradients applied in step 5; base structure here)
+// -----------------------------------------------------------------------------
+// Buttons: stronger primary/secondary contrast, slate-teal integration
+// -----------------------------------------------------------------------------
 .btn {
   display: inline-block;
   min-height: $touch-target-min;
-  padding: 0.6em 1.2em;
+  padding: 0.65em 1.35em;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   border-radius: $radius-md;
   border: none;
   cursor: pointer;
-  transition: background-color $transition-base, color $transition-base, transform $transition-base, box-shadow $transition-base;
+  transition: background $transition-smooth, color $transition-base, transform $transition-base, box-shadow $transition-smooth, border-color $transition-base;
 
   @media (min-width: $bp-md) {
     min-height: auto;
   }
 
   &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
+    outline: $focus-ring-width solid $focus-ring;
+    outline-offset: $focus-ring-offset;
   }
 
   &.btn-primary {
@@ -30,7 +32,7 @@
     &:hover {
       background: $gradient-primary-hover;
       color: #fff;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       box-shadow: $shadow-button-hover;
     }
 
@@ -41,16 +43,17 @@
   }
 
   &.btn-secondary {
-    background: transparent;
-    color: $color-accent;
-    border: 2px solid $color-accent;
+    background: $accent-secondary;
+    color: #fff;
+    border: 2px solid $accent-secondary;
+    box-shadow: 0 2px 8px rgba($slate-teal-dark, 0.25);
 
     &:hover {
-      background: $gradient-primary;
+      background: $accent-secondary-dark;
+      border-color: $accent-secondary-dark;
       color: #fff;
-      border-color: transparent;
-      transform: translateY(-1px);
-      box-shadow: $shadow-button-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($slate-teal-dark, 0.35);
     }
 
     &:active {
@@ -58,20 +61,39 @@
     }
   }
 
+  // Outline secondary (slate-teal) for alternate CTA
+  &.btn-outline {
+    background: transparent;
+    color: $accent-secondary;
+    border: 2px solid $accent-secondary;
+
+    &:hover {
+      background: $accent-secondary;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($slate-teal-dark, 0.3);
+    }
+  }
+
   &.btn-large {
-    padding: 0.75em 1.5em;
-    font-size: unquote("clamp(1rem, 0.95rem + 0.25vw, 1.1rem)");
+    padding: 0.8em 1.75em;
+    font-size: unquote("clamp(1rem, 0.95rem + 0.25vw, 1.125rem)");
   }
 }
 
-// Site header
+// -----------------------------------------------------------------------------
+// Site header: sleeker sticky, depth, stronger nav states
+// -----------------------------------------------------------------------------
 .site-header {
-  background: $color-background;
+  background: rgba($surface-1, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: $shadow-sm;
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid $color-border-light;
+  border-bottom: $border-subtle;
+  transition: box-shadow $transition-smooth;
 }
 
 // Wrapper constraints for header, nav, and footer (keeps content centered, prevents overflow)
@@ -96,10 +118,10 @@
 }
 
 .main-header {
-  padding: $space-sm 0;
+  padding: $space-xs 0 $space-sm;
 
   @media (min-width: $bp-md) {
-    padding: $space-md 0;
+    padding: $space-sm 0 $space-md;
   }
 }
 
@@ -108,10 +130,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: $space-xs;
 
   @media (min-width: $bp-md) {
-    gap: 1rem;
+    gap: $space-sm;
   }
 }
 
@@ -123,21 +145,26 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: inherit;
+    color: $text-primary;
     text-decoration: none;
+    transition: color $transition-base;
 
     @media (min-width: $bp-md) {
       gap: 0.75rem;
     }
+
+    &:hover {
+      color: $text-primary;
+    }
   }
 
   .logo {
-    height: 40px;
+    height: 38px;
     width: auto;
     flex-shrink: 0;
 
     @media (min-width: $bp-md) {
-      height: 52px;
+      height: 48px;
     }
   }
 
@@ -147,20 +174,20 @@
 
   .company-name {
     margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 0.9375rem;
+    font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.2;
 
     @media (min-width: $bp-md) {
-      font-size: 1.2rem;
+      font-size: 1.125rem;
     }
   }
 
   .company-tagline {
     margin: 0.15em 0 0;
-    font-size: 0.7rem;
-    color: $color-text-muted;
+    font-size: 0.6875rem;
+    color: $text-muted;
     letter-spacing: 0.02em;
 
     @media (max-width: #{$bp-md - 1px}) {
@@ -186,7 +213,7 @@
   }
 
   .contact-label {
-    color: $color-text-muted;
+    color: $text-muted;
     font-weight: 500;
     margin-right: 0.35em;
   }
@@ -194,15 +221,16 @@
   .contact-phone,
   .contact-email {
     font-weight: 600;
-    color: $color-text;
+    color: $text-primary;
     transition: color $transition-base;
 
     &:hover {
-      color: $color-primary;
+      color: $accent-primary;
     }
   }
 }
 
+// Mobile menu toggle: clearer treatment, focus and active states
 .mobile-menu-toggle {
   display: flex;
   flex-direction: column;
@@ -212,19 +240,42 @@
   min-width: $touch-target-min;
   min-height: $touch-target-min;
   padding: 0;
-  background: none;
-  border: none;
+  background: $surface-2;
+  border: $border-subtle;
+  border-radius: $radius-sm;
   cursor: pointer;
+  transition: background $transition-base, border-color $transition-base, box-shadow $transition-base;
+
   @media (min-width: $bp-md) {
     display: none;
   }
 
+  &:hover {
+    background: $surface-3;
+    border-color: $color-border;
+  }
+
+  &:focus-visible {
+    outline: $focus-ring-width solid $focus-ring;
+    outline-offset: $focus-ring-offset;
+  }
+
   span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
-    background: #333;
-    transition: $transition-base;
+    background: $text-primary;
+    border-radius: 1px;
+    transition: transform $transition-smooth, opacity $transition-base;
+  }
+
+  &.active {
+    background: $accent-secondary;
+    border-color: $accent-secondary;
+
+    span {
+      background: #fff;
+    }
   }
 
   &.active span:nth-child(1) {
@@ -238,16 +289,20 @@
   }
 }
 
+// Main navigation: clearer mobile drawer, stronger desktop hover/active
 .main-navigation {
-  border-top: 1px solid $color-border-light;
+  border-top: $border-subtle;
 
   @media (max-width: #{$bp-md - 1px}) {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s $transition-smooth;
+    background: $surface-2;
+    border-top-color: $color-border;
 
     &.mobile-open {
       max-height: 420px;
+      box-shadow: $shadow-md;
     }
   }
 }
@@ -262,11 +317,11 @@
 
   @media (max-width: #{$bp-md - 1px}) {
     flex-direction: column;
-    padding: $space-xs 0;
+    padding: $space-xs 0 $space-sm;
   }
 
   @media (min-width: $bp-md) {
-    gap: 0.25rem;
+    gap: 0.15rem;
   }
 }
 
@@ -281,17 +336,18 @@
   align-items: center;
   justify-content: center;
   min-height: $touch-target-min;
-  padding: 0.65rem $space-sm;
-  font-weight: 500;
+  padding: 0.7rem $space-sm;
+  font-weight: 600;
   font-size: 0.9375rem;
-  color: $color-text;
+  color: $text-primary;
   position: relative;
-  transition: color $transition-base;
+  transition: color $transition-smooth, background $transition-base;
 
   @media (min-width: $bp-md) {
     min-height: auto;
     padding: 0.6rem 1rem;
-    margin: 0 0.15rem;
+    margin: 0 0.1rem;
+    border-radius: $radius-sm;
   }
 
   &::after {
@@ -300,39 +356,68 @@
     left: 50%;
     bottom: 0.35rem;
     width: 0;
-    height: 2px;
+    height: 3px;
     background: $gradient-primary;
-    border-radius: 1px;
+    border-radius: 2px;
     transform: translateX(-50%);
     transition: width $transition-smooth;
   }
 
   @media (min-width: $bp-md) {
     &::after {
-      bottom: 0.25rem;
+      bottom: 0.2rem;
     }
   }
 
-  &:hover,
-  &.active {
-    color: $color-primary;
+  @media (max-width: #{$bp-md - 1px}) {
+    &::after {
+      display: none;
+    }
+
+    &.active {
+      background: rgba($accent-secondary, 0.12);
+      color: $accent-secondary;
+    }
+
+    &:hover {
+      background: $surface-3;
+      color: $accent-secondary;
+    }
   }
 
-  &:hover::after,
-  &.active::after {
-    width: 1.25rem;
+  &:focus-visible {
+    outline: $focus-ring-width solid $focus-ring;
+    outline-offset: $focus-ring-offset;
+  }
+
+  @media (min-width: $bp-md) {
+    &:hover {
+      color: $accent-primary;
+    }
+
+    &:hover::after,
+    &.active::after {
+      width: 1.5rem;
+    }
+
+    &.active {
+      color: $accent-primary;
+      font-weight: 700;
+    }
   }
 }
 
-// Page header / title section
+// Page header / title section: clearer hierarchy
 .page-title-section {
-  padding: unquote("clamp(2rem, 4vw, 3rem)") 0;
-  border-bottom: 1px solid $color-border-light;
+  padding: unquote("clamp(#{$space-lg}, 4vw, #{$space-xl})") 0;
+  border-bottom: $border-subtle;
 }
 
 .page-title-section .page-title {
   position: relative;
-  padding-bottom: 0.35em;
+  padding-bottom: 0.4em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .page-title-section .page-title::after {
@@ -340,8 +425,8 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 2.5rem;
-  height: 3px;
+  width: 3rem;
+  height: 4px;
   background: $gradient-primary;
   border-radius: 2px;
 }
@@ -356,9 +441,9 @@
 
 .page-hero-overlay {
   width: 100%;
-  padding: 2rem 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.6));
-  color: #fff;
+  padding: $space-lg 0;
+  background: linear-gradient(transparent, $overlay-dark-strong);
+  color: $text-on-dark;
 }
 
 .page-title {
@@ -399,14 +484,17 @@
   }
 }
 
-// Site footer
+// -----------------------------------------------------------------------------
+// Site footer: depth, refined typography, slate-teal accents
+// -----------------------------------------------------------------------------
 .site-footer {
-  background: $color-accent;
-  color: #b8b8b8;
-  margin-top: $space-xl;
+  background: $surface-dark;
+  color: $text-on-dark-muted;
+  margin-top: $space-2xl;
   padding-top: $space-xl;
   padding-bottom: 0;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: $shadow-top;
+  border-top: $border-on-dark;
 }
 
 .footer-container {
@@ -447,35 +535,35 @@
 
 .footer-section h3,
 .footer-section h4 {
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  color: $text-on-dark;
+  font-size: 0.875rem;
+  font-weight: 700;
   margin-bottom: $space-sm;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .footer-section a {
-  color: rgba(201, 162, 39, 0.95);
+  color: $accent-primary-light;
   transition: color $transition-base;
 
   &:hover {
-    color: $color-primary-light;
+    color: #fff;
   }
 }
 
 .footer-social {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: $border-on-dark;
   padding-top: $space-lg;
   margin-bottom: $space-md;
 }
 
 .footer-social h4 {
   font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #fff;
+  color: $text-on-dark;
   margin-bottom: $space-sm;
 }
 
@@ -491,9 +579,9 @@
   min-height: $touch-target-min;
   align-items: center;
   justify-content: center;
-  color: #999;
+  color: $text-on-dark-muted;
   border-radius: $radius-sm;
-  transition: color $transition-base, transform $transition-base, box-shadow $transition-base;
+  transition: color $transition-base, transform $transition-base, box-shadow $transition-base, background $transition-base;
 
   @media (min-width: $bp-md) {
     min-width: 40px;
@@ -501,18 +589,23 @@
   }
 
   &:hover {
-    color: $color-primary-light;
+    color: $accent-primary-light;
     transform: scale(1.08);
-    box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.25);
+    box-shadow: 0 0 0 2px rgba($accent-primary, 0.35);
+  }
+
+  &:focus-visible {
+    outline: $focus-ring-width solid $focus-ring-on-dark;
+    outline-offset: $focus-ring-offset;
   }
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: $border-on-dark;
   padding-top: $space-sm;
   padding-bottom: $space-sm;
   font-size: 0.8125rem;
-  color: #888;
+  color: $text-on-dark-muted;
 }
 
 .footer-bottom-content {
@@ -525,30 +618,249 @@
 
 .footer-links a {
   margin-left: $space-md;
-  color: #999;
+  color: $text-on-dark-muted;
   transition: color $transition-base;
 
   &:hover {
-    color: $color-primary;
+    color: $accent-primary-light;
   }
 }
 
-// Page CTA section
+// -----------------------------------------------------------------------------
+// Cards & widgets: elevation system, improved contrast
+// -----------------------------------------------------------------------------
+.card {
+  background: $surface-1;
+  border-radius: $radius-lg;
+  border: $border-subtle;
+  box-shadow: $shadow-card;
+  transition: box-shadow $transition-smooth, transform $transition-base, border-color $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    border-color: $color-border;
+  }
+}
+
+.card--elevated {
+  box-shadow: $shadow-md;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Homepage: hero band (placeholder1), trust block (placeholder2), CTA band (placeholder3)
+// -----------------------------------------------------------------------------
+
+.hero-band {
+  position: relative;
+  min-height: unquote("min(280px, 60vh)");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @media (min-width: $bp-md) {
+    min-height: 360px;
+  }
+
+  @media (min-width: $bp-lg) {
+    min-height: 420px;
+  }
+}
+
+.hero-band__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-band__overlay {
+  position: absolute;
+  inset: 0;
+  background: $overlay-dark-strong;
+}
+
+.hero-band__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+}
+
+.hero-band__title {
+  margin: 0 0 $space-xs;
+  color: $text-on-dark;
+  font-size: unquote("clamp(1.875rem, 1.5rem + 1.25vw, 2.75rem)");
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-band__tagline {
+  margin: 0 0 $space-lg;
+  color: $text-on-dark-muted;
+  font-size: unquote("clamp(1rem, 0.95rem + 0.25vw, 1.125rem)");
+  max-width: 36ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-sm;
+}
+
+.hero-band__actions .btn-secondary {
+  color: $text-on-dark;
+  border-color: rgba(255, 255, 255, 0.5);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: $text-on-dark;
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+// Trust block: image + copy (placeholder2)
+.trust-block {
+  display: grid;
+  gap: $space-lg;
+  align-items: center;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-xl;
+  }
+}
+
+.trust-block__media {
+  order: 0;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+}
+
+.trust-block__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.trust-block__content {
+  order: 1;
+}
+
+.trust-block__title {
+  margin-top: 0;
+  margin-bottom: $space-sm;
+}
+
+.trust-block__text {
+  margin-bottom: $space-md;
+  max-width: none;
+}
+
+// CTA band with background image (placeholder3)
+.cta-band {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-band__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cta-band__overlay {
+  position: absolute;
+  inset: 0;
+  background: $overlay-dark-strong;
+}
+
+.cta-band__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: $text-on-dark;
+}
+
+.cta-band__title {
+  margin: 0 0 $space-sm;
+  color: $text-on-dark;
+  font-size: unquote("clamp(1.5rem, 1.3rem + 0.6vw, 1.75rem)");
+}
+
+.cta-band__text {
+  margin: 0 0 $space-md;
+  color: $text-on-dark-muted;
+  max-width: 42ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-band .cta-buttons {
+  margin-top: $space-md;
+}
+
+.cta-band .btn-secondary {
+  color: $text-on-dark;
+  border-color: rgba(255, 255, 255, 0.5);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: $text-on-dark;
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+// High-contrast focus ring on dark backgrounds (CTA band, hero, footer)
+.cta-band .btn:focus-visible,
+.hero-band__actions .btn:focus-visible,
+.hero-band .btn:focus-visible,
+.site-footer .btn:focus-visible,
+.band--surface-dark .btn:focus-visible {
+  outline-color: $focus-ring-on-dark;
+}
+
+// Section title (shared)
+.section-title {
+  margin-top: 0;
+  margin-bottom: $space-xs;
+}
+
+// Page CTA section: deeper elevation, clearer hierarchy
 .page-cta {
-  background: $color-background-alt;
-  padding: unquote("clamp(2rem, 4vw, 3rem)");
+  background: $surface-2;
+  padding: unquote("clamp(#{$space-lg}, 4vw, #{$space-xl})");
   margin-top: $space-lg;
   text-align: center;
   border-radius: $radius-lg;
-  box-shadow: $shadow-sm;
+  border: $border-subtle;
+  box-shadow: $shadow-md;
+
+  h1, h2, h3 {
+    margin-bottom: $space-sm;
+  }
 }
 
 .cta-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: $space-sm;
+  margin-top: $space-sm;
 }
 
 // Post meta, sharing, navigation
@@ -562,9 +874,9 @@
 }
 
 .post-footer {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid $color-border;
+  margin-top: $space-lg;
+  padding-top: $space-lg;
+  border-top: $border-default;
 }
 
 .post-navigation {
@@ -633,7 +945,7 @@
 }
 
 .article-item {
-  border-bottom: 1px solid $color-border-light;
+  border-bottom: $border-subtle;
   padding: $space-md 0;
 
   &:last-child {
@@ -665,7 +977,7 @@
   gap: $space-sm;
   margin-top: $space-lg;
   padding-top: $space-lg;
-  border-top: 1px solid $color-border-light;
+  border-top: $border-subtle;
   font-size: unquote("clamp(0.875rem, 0.85rem + 0.2vw, 0.95rem)");
 }
 

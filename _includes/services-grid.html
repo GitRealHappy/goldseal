@@ -1,19 +1,22 @@
-<section class="services-section">
-  <div class="services-grid">
-    {% assign services = "Heat Pumps::Installation, replacement, and service for energy-efficient heat pump systems.::/heat-pumps/||Furnaces & Boilers::Reliable installation and repair of furnaces and boiler systems.::/furnaces-boilers/||Water Heaters::Installation and service for tank and tankless water heaters.::/water-heaters/||Mechanical Services::General heating and mechanical system maintenance and repairs.::/services/" %}
-    {% assign services_list = services | split: "||" %}
-    
-    {% for item in services_list %}
-      {% assign service = item | split: "::" %}
-      {% assign title = service[0] %}
-      {% assign desc = service[1] %}
-      {% assign url = service[2] %}
-      
-      <a href="{{ url | relative_url }}" class="service-card">
-        <h2>{{ title }}</h2>
-        <p>{{ desc }}</p>
+<div class="services-grid" role="list">
+  {% assign services = "Heat Pumps::Installation, replacement, and service for energy-efficient heat pump systems.::/heat-pumps/||Furnaces & Boilers::Reliable installation and repair of furnaces and boiler systems.::/furnaces-boilers/||Water Heaters::Installation and service for tank and tankless water heaters.::/water-heaters/||Mechanical Services::General heating and mechanical system maintenance and repairs.::/services/" %}
+  {% assign services_list = services | split: "||" %}
+  {% assign icons = "thermometer|fire|droplet|wrench" | split: "|" %}
+
+  {% for item in services_list %}
+    {% assign service = item | split: "::" %}
+    {% assign title = service[0] %}
+    {% assign desc = service[1] %}
+    {% assign url = service[2] %}
+    {% assign icon = icons[forloop.index0] %}
+
+    <a href="{{ url | relative_url }}" class="service-card" role="listitem">
+      <article class="service-card__inner">
+        <span class="service-card__icon service-card__icon--{{ icon }}" aria-hidden="true"></span>
+        <h3 class="service-card__title">{{ title }}</h3>
+        <p class="service-card__desc">{{ desc }}</p>
         <span class="service-link">Request an Estimate</span>
-      </a>
-    {% endfor %}
-  </div>
-</section>
+      </article>
+    </a>
+  {% endfor %}
+</div>

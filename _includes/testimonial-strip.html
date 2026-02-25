@@ -1,0 +1,26 @@
+{% comment %}
+  Reusable testimonial strip. Params: heading (optional), surface (optional).
+  Content: use capture in page, or pass quote/author via include.quote and include.author.
+  For multiple testimonials, use include.quotes (array in front matter) or pass content block.
+{% endcomment %}
+{% assign strip_surface = include.surface | default: "surface-2" %}
+<section class="band section section--{{ strip_surface }} testimonial-strip" aria-label="Testimonials">
+  <div class="band__inner">
+    {% if include.heading %}
+    <h2 class="testimonial-strip__heading">{{ include.heading | escape }}</h2>
+    {% endif %}
+    {% if include.quote %}
+    <blockquote class="testimonial-strip__quote">
+      <p class="testimonial-strip__text">"{{ include.quote | escape }}"</p>
+      {% if include.author %}
+      <cite class="testimonial-strip__cite">— {{ include.author | escape }}</cite>
+      {% endif %}
+    </blockquote>
+    {% endif %}
+    {% if include.content %}
+    <div class="testimonial-strip__content">
+      {{ include.content | markdownify }}
+    </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,24 @@
+{% comment %}
+  Reusable CTA band. Use at bottom of pages for consistent call-to-action.
+  Params: title (optional), text (optional), primary_label (optional), primary_url (optional), secondary_label (optional), secondary_url (optional).
+  Defaults: title "Ready to Get Started?", text from site, primary = Call phone, secondary = Get Free Quote → /contact/
+{% endcomment %}
+{% assign cta_phone = site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' %}
+<section class="band section section--surface-dark cta-band" aria-label="Call to action">
+  <div class="band__inner">
+    <div class="cta-band__content">
+      <h2 class="cta-band__title">{{ include.title | default: "Ready to Get Started?" }}</h2>
+      <p class="cta-band__text">{{ include.text | default: "Contact us today for professional mechanical services you can trust." }}</p>
+      <div class="cta-band__buttons">
+        {% if include.primary_url %}
+        <a href="{{ include.primary_url }}" class="btn btn-primary btn-large">{{ include.primary_label | default: "Call Now" }}</a>
+        {% else %}
+        <a href="tel:{{ cta_phone }}" class="btn btn-primary btn-large">{{ include.primary_label | default: "Call" }} {{ site.company.phone }}</a>
+        {% endif %}
+        <a href="{{ include.secondary_url | default: '/contact/' | relative_url }}" class="btn btn-secondary btn-large cta-band__btn-secondary">
+          {{ include.secondary_label | default: "Get Free Quote" }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

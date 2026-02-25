@@ -1,13 +1,13 @@
 # Site settings
 title: "Gold Seal Mechanical"
-email: "info@goldseal.com"
+email: "goldsealheating@outlook.com"
 description: >-
   Professional plumbing, heating, air conditioning, and gas services.
   Licensed and insured mechanical contractors serving residential and commercial clients
   with quality workmanship and reliable service.
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://goldseal.com" # the base hostname & protocol for your site
+url: "[not yet set]" # the base hostname & protocol for your site
 
 # Company information
 company:

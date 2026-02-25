@@ -17,6 +17,8 @@ layout: default
           </div>
         </div>
       </div>
+      {% elsif page.use_hero_band %}
+      {% comment %} Title comes from hero-band include in content {% endcomment %}
       {% else %}
       <div class="page-title-section animate-on-scroll animate-up">
         <h1 class="page-title">{{ page.title | escape }}</h1>
@@ -134,21 +136,8 @@ layout: default
     {% endif %}
   </div>
 
-  <!-- Call to Action Section (if enabled) -->
+  <!-- Call to Action Section (if enabled) - uses reusable cta-band include -->
   {% if page.show_cta %}
-  <section class="page-cta animate-on-scroll animate-up">
-    <div class="cta-content">
-      <h2>{{ page.cta_title | default: "Ready to Get Started?" }}</h2>
-      <p>{{ page.cta_text | default: "Contact us today for professional mechanical services you can trust." }}</p>
-      <div class="cta-buttons">
-        <a href="tel:{{ site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }}" class="btn btn-primary btn-large">
-          Call {{ site.company.phone }}
-        </a>
-        <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary btn-large">
-          Get Free Quote
-        </a>
-      </div>
-    </div>
-  </section>
+  {% include cta-band.html title=page.cta_title text=page.cta_text %}
   {% endif %}
 </div>

@@ -1,30 +1,111 @@
-// Layout - wrapper, page structure, grid
+// Layout - wrapper, page structure, grid, section rhythm, full-bleed bands
+
+// ---------------------------------------------------------------------------
+// Wrapper & containers
+// ---------------------------------------------------------------------------
 
 .wrapper {
   max-width: $wrapper-max-width;
   margin-left: auto;
   margin-right: auto;
-  padding-left: $space-md;
-  padding-right: $space-md;
+  padding-left: calc(#{$space-md} + env(safe-area-inset-left, 0px));
+  padding-right: calc(#{$space-md} + env(safe-area-inset-right, 0px));
 
   @media (min-width: $bp-md) {
-    padding-left: $space-lg;
-    padding-right: $space-lg;
+    padding-left: calc(#{$space-lg} + env(safe-area-inset-left, 0px));
+    padding-right: calc(#{$space-lg} + env(safe-area-inset-right, 0px));
   }
 
   @media (min-width: $bp-lg) {
-    padding-left: $space-xl;
-    padding-right: $space-xl;
+    padding-left: calc(#{$space-xl} + env(safe-area-inset-left, 0px));
+    padding-right: calc(#{$space-xl} + env(safe-area-inset-right, 0px));
   }
 }
 
-.page-content {
-  padding-top: unquote("clamp(1.5rem, 3vw, 2rem)");
-  padding-bottom: unquote("clamp(3rem, 5vw, 4rem)");
+// ---------------------------------------------------------------------------
+// Full-bleed bands with centered inner container
+// ---------------------------------------------------------------------------
+
+.band {
+  width: 100%;
+  // No horizontal padding on the band; content uses .band__inner
+}
+
+.band__inner {
+  max-width: $wrapper-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(#{$space-md} + env(safe-area-inset-left, 0px));
+  padding-right: calc(#{$space-md} + env(safe-area-inset-right, 0px));
 
   @media (min-width: $bp-md) {
-    padding-top: $space-lg;
+    padding-left: calc(#{$space-lg} + env(safe-area-inset-left, 0px));
+    padding-right: calc(#{$space-lg} + env(safe-area-inset-right, 0px));
+  }
+
+  @media (min-width: $bp-lg) {
+    padding-left: calc(#{$space-xl} + env(safe-area-inset-left, 0px));
+    padding-right: calc(#{$space-xl} + env(safe-area-inset-right, 0px));
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Section surface system (alternating backgrounds, visual rhythm)
+// ---------------------------------------------------------------------------
+
+.section {
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+
+  @media (min-width: $bp-md) {
+    padding-top: $space-2xl;
     padding-bottom: $space-2xl;
+  }
+}
+
+// Alternating surfaces for layered rhythm (use on .section or .band)
+.section--surface-1,
+.band--surface-1 {
+  background-color: $surface-1;
+}
+
+.section--surface-2,
+.band--surface-2 {
+  background-color: $surface-2;
+}
+
+.section--surface-dark,
+.band--surface-dark {
+  background-color: $surface-dark;
+  color: $color-background;
+
+  a {
+    color: $color-primary-light;
+  }
+}
+
+// Optional: tighter section for dense stacks (e.g. homepage)
+.section--tight {
+  padding-top: $space-lg;
+  padding-bottom: $space-lg;
+
+  @media (min-width: $bp-md) {
+    padding-top: $space-xl;
+    padding-bottom: $space-xl;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page content (tightened vertical spacing for stacks)
+// ---------------------------------------------------------------------------
+
+.page-content {
+  padding-top: unquote("clamp(1rem, 2.5vw, 1.5rem)");
+  padding-bottom: unquote("clamp(2rem, 4vw, 2.5rem)");
+
+  @media (min-width: $bp-md) {
+    padding-top: $space-md;
+    padding-bottom: $space-xl;
   }
 }
 
@@ -68,16 +149,23 @@
 .sidebar-widget {
   margin-bottom: $space-lg;
   padding: $space-md;
-  background: $color-background-alt;
+  background: $surface-2;
   border-radius: $radius-md;
-  box-shadow: $shadow-sm;
+  border: $border-subtle;
+  box-shadow: $shadow-card;
+  transition: box-shadow $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+  }
 
   h3 {
     margin-top: 0;
     font-size: 0.9375rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: $color-text-muted;
+    color: $text-primary;
   }
 }
 
@@ -94,5 +182,188 @@
 .related-post-content {
   .related-post-title {
     font-size: 1rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Reusable section includes (hero-band, feature-split, testimonial-strip, cta-band)
+// ---------------------------------------------------------------------------
+
+// Breakout: bands inside page main content span full viewport width on
+// small/tablet layouts. On desktop with sidebar grids, keep bands aligned
+// to content column to avoid left-shifted text.
+@media (max-width: #{$bp-lg - 1px}) {
+  .page-main-content .band {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+  }
+}
+
+.hero-band__content--no-image {
+  padding-top: $space-lg;
+  padding-bottom: $space-lg;
+
+  @media (min-width: $bp-md) {
+    padding-top: $space-xl;
+    padding-bottom: $space-xl;
+  }
+}
+
+.hero-band__title {
+  margin: 0;
+  font-size: unquote("clamp(1.5rem, 2.5vw, 2rem)");
+  font-weight: 700;
+  line-height: $line-height-tight;
+}
+
+.hero-band__subtitle {
+  margin: $space-sm 0 0;
+  font-size: 1.0625rem;
+  max-width: $measure;
+  opacity: 0.95;
+}
+
+.hero-band__visual {
+  background-size: cover;
+  background-position: center;
+  min-height: 200px;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.hero-band__overlay {
+  width: 100%;
+  min-height: 200px;
+  padding: $space-xl $space-md;
+  background: linear-gradient(transparent, $overlay-dark-strong);
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-band__content .hero-band__title {
+  color: $text-on-dark;
+}
+
+.hero-band__content .hero-band__subtitle {
+  color: $text-on-dark-muted;
+}
+
+.feature-split__grid {
+  display: grid;
+  gap: $space-xl;
+  align-items: center;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.feature-split__grid--reverse {
+  @media (min-width: $bp-md) {
+    direction: rtl;
+
+    > * {
+      direction: ltr;
+    }
+  }
+}
+
+.feature-split__heading {
+  margin: 0 0 $space-sm;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.feature-split__body {
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.feature-split__image {
+  width: 100%;
+  height: auto;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+}
+
+.testimonial-strip__heading {
+  margin: 0 0 $space-lg;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.testimonial-strip__quote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-align: center;
+  max-width: $measure;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonial-strip__text {
+  font-size: 1.125rem;
+  font-style: italic;
+  margin: 0 0 $space-sm;
+  line-height: 1.6;
+}
+
+.testimonial-strip__cite {
+  font-style: normal;
+  font-size: 0.9375rem;
+  color: $text-muted;
+}
+
+.testimonial-strip__content {
+  max-width: $measure;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-band__content {
+  text-align: center;
+  padding: $space-lg 0;
+
+  @media (min-width: $bp-md) {
+    padding: $space-xl 0;
+  }
+}
+
+.cta-band__title {
+  margin: 0;
+  color: $text-on-dark;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cta-band__text {
+  margin: $space-sm 0 $space-md;
+  color: $text-on-dark-muted;
+  max-width: 40ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-band__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-sm;
+}
+
+.cta-band .btn-secondary {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: $text-on-dark;
+
+  &:hover {
+    background: $overlay-light;
+    color: $text-primary;
+    border-color: transparent;
   }
 }

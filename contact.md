@@ -3,11 +3,13 @@ layout: page
 title: Contact
 permalink: /contact/
 description: Get in touch with Gold Seal Mechanical for quotes and service.
+show_cta: true
+use_hero_band: true
 ---
 
-## Contact Gold Seal Mechanical
+{% include hero-band.html title="Contact Gold Seal Mechanical" subtitle="We're here to help with your plumbing, heating, cooling, and gas needs." surface="surface-2" %}
 
-We're here to help with your plumbing, heating, cooling, and gas needs.
+{% include section-open.html surface="surface-1" %}
 
 ### Phone
 
@@ -28,6 +30,10 @@ We're here to help with your plumbing, heating, cooling, and gas needs.
 - {{ area }}
 {% endfor %}
 
----
+{% include section-close.html %}
+
+{% include section-open.html surface="surface-2" %}
 
 *We'll respond to inquiries as quickly as possible. For urgent issues, please call our emergency line.*
+
+{% include section-close.html %}

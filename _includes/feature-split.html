@@ -1,0 +1,26 @@
+{% comment %}
+  Reusable feature split: two-column layout (text + image or text + text).
+  Params: heading (optional), body (optional - use capture in page for long content), image (optional URL), image_alt (optional), surface (optional), reverse (optional: true for image on left)
+{% endcomment %}
+{% assign split_surface = include.surface | default: "surface-1" %}
+<section class="band section section--{{ split_surface }} feature-split" aria-label="Feature">
+  <div class="band__inner">
+    <div class="feature-split__grid {% if include.reverse %}feature-split__grid--reverse{% endif %}">
+      <div class="feature-split__content">
+        {% if include.heading %}
+        <h2 class="feature-split__heading">{{ include.heading | escape }}</h2>
+        {% endif %}
+        {% if include.body %}
+        <div class="feature-split__body">
+          {{ include.body | strip | markdownify }}
+        </div>
+        {% endif %}
+      </div>
+      {% if include.image %}
+      <div class="feature-split__media">
+        <img src="{{ include.image | relative_url }}" alt="{{ include.image_alt | default: include.heading | escape }}" class="feature-split__image" width="600" height="400" loading="lazy" decoding="async" />
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

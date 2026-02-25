@@ -1,18 +1,25 @@
 // Design tokens - single source of truth
+// Use tokens instead of hardcoded px/colors for consistency and future content rewrite.
 
+// -----------------------------------------------------------------------------
 // Breakpoints
+// -----------------------------------------------------------------------------
 $bp-sm: 480px;
 $bp-md: 768px;
 $bp-lg: 1024px;
 $bp-xl: 1280px;
 $bp-2xl: 1440px;
 
-// Typography
+// -----------------------------------------------------------------------------
+// Typography (compatible with future content rewrite)
+// -----------------------------------------------------------------------------
 $font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 $line-height-base: 1.6;
 $line-height-tight: 1.3;
 
-// Colors
+// -----------------------------------------------------------------------------
+// Colors - Raw palette
+// -----------------------------------------------------------------------------
 $color-text: #333;
 $color-text-muted: #666;
 $color-primary: #c9a227;
@@ -24,35 +31,105 @@ $color-background-alt: #fafafa;
 $color-border: #e8e8e8;
 $color-border-light: #f0f0f0;
 
-// Button gradient
-$gradient-primary: linear-gradient(135deg, $color-primary-light 0%, $color-primary 50%, $color-primary-dark 100%);
-$gradient-primary-hover: linear-gradient(135deg, lighten($color-primary-light, 3%) 0%, lighten($color-primary, 3%) 50%, $color-primary 100%);
+// Option B: Slate-teal (secondary brand)
+$slate-teal: #3d5a6c;
+$slate-teal-light: #4a6d7c;
+$slate-teal-dark: #2d4554;
+$slate-teal-muted: #5a7a8a;
 
-// Shadows
+// -----------------------------------------------------------------------------
+// Semantic surface & text tokens (layered backgrounds, darker tone)
+// -----------------------------------------------------------------------------
+$surface-1: $color-background;
+$surface-2: $color-background-alt;
+$surface-3: darken($color-background-alt, 2%);
+$surface-dark: $color-accent;
+$surface-dark-subtle: lighten($color-accent, 4%);
+
+$text-primary: $color-text;
+$text-muted: $color-text-muted;
+$text-on-dark: #e8e8e8;
+$text-on-dark-muted: #b8b8b8;
+
+$accent-primary: $color-primary;
+$accent-primary-light: $color-primary-light;
+$accent-primary-dark: $color-primary-dark;
+$accent-secondary: $slate-teal;
+$accent-secondary-light: $slate-teal-light;
+$accent-secondary-dark: $slate-teal-dark;
+
+// -----------------------------------------------------------------------------
+// Border tokens (depth & overlays)
+// -----------------------------------------------------------------------------
+$border-default: 1px solid $color-border;
+$border-subtle: 1px solid $color-border-light;
+$border-strong: 1px solid darken($color-border, 8%);
+$border-on-dark: 1px solid rgba(255, 255, 255, 0.08);
+$border-accent: 1px solid $color-primary;
+
+// Overlays (for hero/visual bands)
+$overlay-light: rgba(255, 255, 255, 0.85);
+$overlay-dark: rgba(0, 0, 0, 0.5);
+$overlay-dark-strong: rgba(0, 0, 0, 0.6);
+
+// -----------------------------------------------------------------------------
+// Shadow scale (depth consistency)
+// -----------------------------------------------------------------------------
+$shadow-xs: 0 1px 1px rgba(0, 0, 0, 0.04);
 $shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
 $shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
 $shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.12);
+$shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+$shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.12);
+$shadow-top: 0 -4px 20px rgba(0, 0, 0, 0.08);
 $shadow-button: 0 2px 8px rgba(201, 162, 39, 0.35);
 $shadow-button-hover: 0 4px 12px rgba(201, 162, 39, 0.4);
+$shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.04);
 
+// -----------------------------------------------------------------------------
+// Button gradients
+// -----------------------------------------------------------------------------
+$gradient-primary: linear-gradient(135deg, $color-primary-light 0%, $color-primary 50%, $color-primary-dark 100%);
+$gradient-primary-hover: linear-gradient(135deg, lighten($color-primary-light, 3%) 0%, lighten($color-primary, 3%) 50%, $color-primary 100%);
+
+// -----------------------------------------------------------------------------
 // Border radius
+// -----------------------------------------------------------------------------
 $radius-sm: 6px;
 $radius-md: 10px;
 $radius-lg: 16px;
 
-// Spacing scale (rem)
+// -----------------------------------------------------------------------------
+// Spacing scale (rem) - use these instead of hardcoded px where practical
+// -----------------------------------------------------------------------------
+$space-2xs: 0.25rem;
 $space-xs: 0.5rem;
 $space-sm: 1rem;
 $space-md: 1.5rem;
 $space-lg: 2rem;
 $space-xl: 3rem;
 $space-2xl: 4rem;
+$space-3xl: 5rem;
 
+// -----------------------------------------------------------------------------
 // Transitions
+// -----------------------------------------------------------------------------
 $transition-base: 0.2s ease;
 $transition-smooth: 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 
+// -----------------------------------------------------------------------------
+// Accessibility: focus rings (high contrast for keyboard users)
+// -----------------------------------------------------------------------------
+$focus-ring: #1a1a1a;
+$focus-ring-on-dark: rgba(255, 255, 255, 0.95);
+$focus-ring-offset: 2px;
+$focus-ring-width: 2px;
+
+// -----------------------------------------------------------------------------
 // Layout
+// -----------------------------------------------------------------------------
 $wrapper-max-width: 1200px;
 $touch-target-min: 44px;
 $measure: 65ch;

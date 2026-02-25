@@ -5,11 +5,12 @@ permalink: /services/
 description: Plumbing, heating, air conditioning, and gas services from licensed professionals.
 sidebar: services
 show_cta: true
+use_hero_band: true
 ---
 
-## Full-Service Mechanical Contractors
+{% include hero-band.html title="Full-Service Mechanical Contractors" subtitle="Gold Seal Mechanical provides complete plumbing, heating, air conditioning, and gas services for your home or business." surface="surface-2" %}
 
-Gold Seal Mechanical provides complete plumbing, heating, air conditioning, and gas services for your home or business.
+{% include section-open.html surface="surface-1" %}
 
 ### Plumbing
 
@@ -27,6 +28,12 @@ AC installation, repair, and seasonal maintenance. We help you choose the right 
 
 Licensed gas line installation and appliance connections. Safe, code-compliant gas work for water heaters, dryers, ranges, and more.
 
----
+{% include section-close.html %}
+
+{% include feature-split.html heading="Trusted for Quality & Reliability" image="/assets/images/placeholder2.jpeg" image_alt="Mechanical service" surface="surface-2" body="We combine experience with a commitment to clear communication and fair pricing. When you need mechanical work done right, we're here to help." %}
+
+{% include section-open.html surface="surface-1" %}
 
 Contact us for a free quote or to schedule service.
+
+{% include section-close.html %}
