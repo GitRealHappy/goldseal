@@ -3,7 +3,13 @@ layout: default
 ---
 
 <article class="home-page">
-  {% include hero-band.html %}
+  {% include hero-band.html
+    title=page.title
+    subtitle=page.description
+    image="/assets/images/placeholder1.jpeg"
+    image_alt=page.title
+    surface="surface-dark"
+  %}
 
   <section class="section section--surface-1 section--tight" aria-labelledby="intro-heading">
     <div class="band__inner">
