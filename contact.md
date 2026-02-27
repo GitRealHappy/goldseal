@@ -7,7 +7,7 @@ show_cta: true
 use_hero_band: true
 ---
 
-{% include hero-band.html title="Contact Gold Seal Mechanical" subtitle="We're here to help with your plumbing, heating, cooling, and gas needs." surface="surface-2" %}
+{% include hero-band.html title="Contact Gold Seal Mechanical" subtitle="We're here to help with your plumbing, heating, cooling, and gas needs." image="/assets/images/img3.png" image_alt="Contact Gold Seal Mechanical" surface="surface-dark" %}
 
 {% include section-open.html surface="surface-1" %}
 

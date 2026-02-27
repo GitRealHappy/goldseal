@@ -23,4 +23,4 @@ use_hero_band: true
 
 {% include testimonial-strip.html heading="Trusted by Homeowners & Businesses" surface="surface-2" quote="Professional, on time, and fair pricing. We recommend Gold Seal Mechanical." author="Satisfied Customer" %}
 
-{% include feature-split.html heading="Quality Work You Can Count On" image="/assets/images/placeholder3.jpeg" image_alt="Past work" surface="surface-1" body="Ready to join our satisfied customers? Get in touch for a free quote and experience the Gold Seal difference." %}
+{% include feature-split.html heading="Quality Work You Can Count On" image="/assets/images/img5.png" image_alt="Past work" surface="surface-1" body="Ready to join our satisfied customers? Get in touch for a free quote and experience the Gold Seal difference." %}

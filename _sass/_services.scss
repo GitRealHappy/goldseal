@@ -1,10 +1,7 @@
-// Services Grid Section (uses layout section rhythm when inside page stacks)
+// Services Grid Section - full-bleed, no gaps, slick modern cards
 .services-section {
   width: 100%;
-
-  .band__inner {
-    width: 100%;
-  }
+  overflow: hidden;
 }
 
 .services-section__title {
@@ -18,14 +15,22 @@
 .services-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $space-md;
+  gap: 0;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 
   @media (min-width: $bp-md) {
     grid-template-columns: 1fr 1fr;
   }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-// Service cards: deeper subtle elevation, improved contrast, icon support
+// Service cards: full-bleed, no radius, slick modern
 .service-card {
   display: flex;
   flex-direction: column;
@@ -33,23 +38,107 @@
   align-items: flex-start;
   padding: unquote("clamp(#{$space-lg}, 5vw, #{$space-xl})");
   background-color: $surface-2;
-  border-radius: $radius-lg;
+  border-radius: 0;
   text-decoration: none;
   color: $text-primary;
-  transition: transform $transition-smooth, box-shadow $transition-smooth, border-color $transition-smooth;
+  transition: background-color $transition-smooth, color $transition-smooth;
   height: 100%;
-  border: $border-subtle;
-  box-shadow: $shadow-card;
+  border: none;
+  border-right: $border-subtle;
+  border-bottom: $border-subtle;
+  overflow: hidden;
 
-  &:nth-child(even) {
-    background-color: $surface-3;
+  // All cards: dark mode by default with background images when NOT hovering
+  &:nth-child(1),
+  &:nth-child(2),
+  &:nth-child(3),
+  &:nth-child(4) {
+    background-color: $surface-dark;
+    color: $text-on-dark;
+
+    .service-card__desc,
+    .service-card__title {
+      color: inherit;
+    }
+    .service-link {
+      color: $accent-primary-light;
+    }
+    .service-card__icon {
+      background: linear-gradient(135deg, $accent-primary 0%, $accent-primary-dark 100%);
+    }
   }
 
+  // Card 1 (Heat Pumps): background image when NOT hovering
+  &:nth-child(1) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/placeholder1.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  // Card 2 (Furnaces & Boilers): background image when NOT hovering
+  &:nth-child(2) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/placeholder2.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  // Card 3 (Water Heaters): background image when NOT hovering
+  &:nth-child(3) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/waterheater.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  // Card 4 (Mechanical Services): background image when NOT hovering
+  &:nth-child(4) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/mechanical.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  // Border logic: 1 col mobile, 2 col tablet, 4 col desktop
+  @media (max-width: #{$bp-md - 1px}) {
+    border-right: none;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  @media (min-width: $bp-md) and (max-width: #{$bp-lg - 1px}) {
+    &:nth-child(2n) {
+      border-right: none;
+    }
+    &:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+  }
+
+  @media (min-width: $bp-lg) {
+    &:nth-child(4n) {
+      border-right: none;
+    }
+    &:nth-last-child(-n + 4) {
+      border-bottom: none;
+    }
+  }
+
+  // Hover: all cards go light (no background image)
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-card-hover;
+    background-color: $surface-2;
+    background-image: none;
+    color: $text-primary;
     text-decoration: none;
-    border-color: darken($color-border, 6%);
+
+    .service-card__desc,
+    .service-card__title {
+      color: inherit;
+    }
+    .service-link {
+      color: $accent-primary;
+    }
+    .service-card__icon {
+      background: linear-gradient(135deg, $accent-secondary 0%, $accent-secondary-dark 100%);
+    }
   }
 
   &:focus-visible {
@@ -63,6 +152,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  transition: transform 0.15s ease-out;
 }
 
 .service-card__icon {
@@ -132,10 +222,6 @@
 .service-card .service-link::after {
   content: '→';
   transition: transform $transition-smooth;
-}
-
-.service-card:hover .service-link {
-  color: $accent-primary-dark;
 }
 
 .service-card:hover .service-link::after {

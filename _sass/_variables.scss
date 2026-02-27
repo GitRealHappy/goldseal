@@ -31,6 +31,9 @@ $color-background-alt: #fafafa;
 $color-border: #e8e8e8;
 $color-border-light: #f0f0f0;
 
+// Light gray (header, intro section)
+$color-header-bg: #eaeaea;
+
 // Option B: Slate-teal (secondary brand)
 $slate-teal: #3d5a6c;
 $slate-teal-light: #4a6d7c;
@@ -59,13 +62,14 @@ $accent-secondary-light: $slate-teal-light;
 $accent-secondary-dark: $slate-teal-dark;
 
 // -----------------------------------------------------------------------------
-// Border tokens (depth & overlays)
+// Border tokens (sharp, metallic)
 // -----------------------------------------------------------------------------
 $border-default: 1px solid $color-border;
 $border-subtle: 1px solid $color-border-light;
-$border-strong: 1px solid darken($color-border, 8%);
-$border-on-dark: 1px solid rgba(255, 255, 255, 0.08);
+$border-strong: 1px solid darken($color-border, 12%);
+$border-on-dark: 1px solid rgba(255, 255, 255, 0.1);
 $border-accent: 1px solid $color-primary;
+$border-metallic: 1px solid rgba(0, 0, 0, 0.12);
 
 // Overlays (for hero/visual bands)
 $overlay-light: rgba(255, 255, 255, 0.85);
@@ -73,33 +77,36 @@ $overlay-dark: rgba(0, 0, 0, 0.5);
 $overlay-dark-strong: rgba(0, 0, 0, 0.6);
 
 // -----------------------------------------------------------------------------
-// Shadow scale (depth consistency)
+// Shadow scale (sharp, metallic depth)
 // -----------------------------------------------------------------------------
-$shadow-xs: 0 1px 1px rgba(0, 0, 0, 0.04);
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
-$shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.12);
-$shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
-$shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
-$shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.12);
-$shadow-top: 0 -4px 20px rgba(0, 0, 0, 0.08);
-$shadow-button: 0 2px 8px rgba(201, 162, 39, 0.35);
-$shadow-button-hover: 0 4px 12px rgba(201, 162, 39, 0.4);
-$shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-xs: 0 1px 0 rgba(0, 0, 0, 0.06);
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 2px 6px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 6px 20px rgba(0, 0, 0, 0.12);
+$shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.12);
+$shadow-top: 0 -2px 8px rgba(0, 0, 0, 0.06);
+$shadow-button: 0 2px 4px rgba(0, 0, 0, 0.2);
+$shadow-button-hover: 0 3px 8px rgba(0, 0, 0, 0.25);
+$shadow-inset: inset 0 1px 0 rgba(0, 0, 0, 0.06);
 
 // -----------------------------------------------------------------------------
-// Button gradients
+// Button gradients (metallic gold)
 // -----------------------------------------------------------------------------
-$gradient-primary: linear-gradient(135deg, $color-primary-light 0%, $color-primary 50%, $color-primary-dark 100%);
-$gradient-primary-hover: linear-gradient(135deg, lighten($color-primary-light, 3%) 0%, lighten($color-primary, 3%) 50%, $color-primary 100%);
+$gradient-primary: linear-gradient(180deg, $color-primary-light 0%, $color-primary 40%, $color-primary-dark 100%);
+$gradient-primary-hover: linear-gradient(180deg, lighten($color-primary-light, 4%) 0%, lighten($color-primary, 2%) 40%, $color-primary 100%);
+
+// Metallic surface gradient (subtle brushed effect)
+$gradient-metallic: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%, rgba(0, 0, 0, 0.02) 100%);
 
 // -----------------------------------------------------------------------------
-// Border radius
+// Border radius (sharp, metallic aesthetic)
 // -----------------------------------------------------------------------------
-$radius-sm: 6px;
-$radius-md: 10px;
-$radius-lg: 16px;
+$radius-sm: 2px;
+$radius-md: 2px;
+$radius-lg: 2px;
 
 // -----------------------------------------------------------------------------
 // Spacing scale (rem) - use these instead of hardcoded px where practical

@@ -27,33 +27,34 @@
   &.btn-primary {
     background: $gradient-primary;
     color: #fff;
-    box-shadow: $shadow-button;
+    box-shadow: $shadow-button, inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.15);
 
     &:hover {
       background: $gradient-primary-hover;
       color: #fff;
-      transform: translateY(-2px);
-      box-shadow: $shadow-button-hover;
+      transform: translateY(-1px);
+      box-shadow: $shadow-button-hover, inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
     &:active {
       transform: translateY(0);
-      box-shadow: $shadow-button;
+      box-shadow: $shadow-button, inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
   }
 
   &.btn-secondary {
-    background: $accent-secondary;
+    background: linear-gradient(180deg, $accent-secondary-light 0%, $accent-secondary 50%, $accent-secondary-dark 100%);
     color: #fff;
-    border: 2px solid $accent-secondary;
-    box-shadow: 0 2px 8px rgba($slate-teal-dark, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: $shadow-button, inset 0 1px 0 rgba(255, 255, 255, 0.15);
 
     &:hover {
-      background: $accent-secondary-dark;
-      border-color: $accent-secondary-dark;
+      background: linear-gradient(180deg, $accent-secondary 0%, $accent-secondary-dark 100%);
+      border-color: rgba(0, 0, 0, 0.25);
       color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba($slate-teal-dark, 0.35);
+      transform: translateY(-1px);
+      box-shadow: $shadow-button-hover, inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     &:active {
@@ -85,14 +86,12 @@
 // Site header: sleeker sticky, depth, stronger nav states
 // -----------------------------------------------------------------------------
 .site-header {
-  background: rgba($surface-1, 0.98);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: $shadow-sm;
+  background: linear-gradient(180deg, lighten($color-header-bg, 2%) 0%, $color-header-bg 100%);
+  box-shadow: $shadow-sm, inset 0 1px 0 rgba(255, 255, 255, 0.5);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: $border-subtle;
+  border-bottom: $border-strong;
   transition: box-shadow $transition-smooth;
 }
 
@@ -230,29 +229,33 @@
   }
 }
 
-// Mobile menu toggle: clearer treatment, focus and active states
+// Mobile menu toggle: sharp metallic design, smooth animation
 .mobile-menu-toggle {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   min-width: $touch-target-min;
   min-height: $touch-target-min;
   padding: 0;
-  background: $surface-2;
-  border: $border-subtle;
+  background: linear-gradient(180deg, lighten($surface-2, 2%) 0%, $surface-2 100%);
+  border: 1px solid darken($color-border, 8%);
   border-radius: $radius-sm;
   cursor: pointer;
-  transition: background $transition-base, border-color $transition-base, box-shadow $transition-base;
+  box-shadow: $shadow-sm, inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s ease,
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (min-width: $bp-md) {
     display: none;
   }
 
   &:hover {
-    background: $surface-3;
-    border-color: $color-border;
+    background: linear-gradient(180deg, $surface-3 0%, darken($surface-3, 2%) 100%);
+    border-color: darken($color-border, 12%);
+    box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   &:focus-visible {
@@ -262,47 +265,51 @@
 
   span {
     display: block;
-    width: 22px;
+    width: 20px;
     height: 2px;
     background: $text-primary;
-    border-radius: 1px;
-    transition: transform $transition-smooth, opacity $transition-base;
+    border-radius: 0;
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &.active {
-    background: $accent-secondary;
-    border-color: $accent-secondary;
+    background: $surface-dark;
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
     span {
-      background: #fff;
+      background: $text-on-dark;
     }
   }
 
   &.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: translateY(4px) rotate(45deg);
   }
   &.active span:nth-child(2) {
     opacity: 0;
   }
   &.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: translateY(-4px) rotate(-45deg);
   }
 }
 
-// Main navigation: clearer mobile drawer, stronger desktop hover/active
+// Main navigation: sharp metallic mobile drawer, stronger desktop hover/active
 .main-navigation {
   border-top: $border-subtle;
 
   @media (max-width: #{$bp-md - 1px}) {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s $transition-smooth;
-    background: $surface-2;
-    border-top-color: $color-border;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(180deg, $surface-2 0%, darken($surface-2, 1%) 100%);
+    border-top: 1px solid darken($color-border, 10%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
 
     &.mobile-open {
       max-height: 420px;
-      box-shadow: $shadow-md;
+      box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
   }
 }
@@ -321,11 +328,19 @@
   }
 
   @media (min-width: $bp-md) {
-    gap: 0.15rem;
+    gap: 0.35rem;
   }
 }
 
 .nav-item {
+  @media (max-width: #{$bp-md - 1px}) {
+    border-bottom: 1px solid darken($color-border, 6%);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
   @media (min-width: $bp-md) {
     border-left: none;
   }
@@ -345,9 +360,10 @@
 
   @media (min-width: $bp-md) {
     min-height: auto;
-    padding: 0.6rem 1rem;
-    margin: 0 0.1rem;
-    border-radius: $radius-sm;
+    padding: 0.75rem 1.35rem;
+    margin: 0 0.2rem;
+    font-size: 1rem;
+    border-radius: $radius-md;
   }
 
   &::after {
@@ -356,9 +372,9 @@
     left: 50%;
     bottom: 0.35rem;
     width: 0;
-    height: 3px;
+    height: 2px;
     background: $gradient-primary;
-    border-radius: 2px;
+    border-radius: 0;
     transform: translateX(-50%);
     transition: width $transition-smooth;
   }
@@ -375,8 +391,17 @@
     }
 
     &.active {
-      background: rgba($accent-secondary, 0.12);
-      color: $accent-secondary;
+      background: $surface-dark;
+      color: $text-on-dark;
+      font-weight: 700;
+      border-left: 3px solid $accent-primary;
+      margin: 0 $space-xs;
+      padding-left: calc(#{$space-sm} - 3px);
+
+      &:hover {
+        background: $surface-dark-subtle;
+        color: $text-on-dark;
+      }
     }
 
     &:hover {
@@ -393,24 +418,39 @@
   @media (min-width: $bp-md) {
     &:hover {
       color: $accent-primary;
+      background: $surface-3;
     }
 
-    &:hover::after,
-    &.active::after {
+    &:hover::after {
       width: 1.5rem;
     }
 
     &.active {
-      color: $accent-primary;
+      background: $surface-dark;
+      color: $text-on-dark;
       font-weight: 700;
+
+      &::after {
+        width: 2rem;
+        background: linear-gradient(90deg, $accent-primary-light, $accent-primary);
+      }
+
+      &:hover {
+        background: $surface-dark-subtle;
+        color: $text-on-dark;
+      }
+
+      &:focus-visible {
+        outline-color: $focus-ring-on-dark;
+      }
     }
   }
 }
 
-// Page header / title section: clearer hierarchy
+// Page header / title section: sharper hierarchy
 .page-title-section {
   padding: unquote("clamp(#{$space-lg}, 4vw, #{$space-xl})") 0;
-  border-bottom: $border-subtle;
+  border-bottom: $border-strong;
 }
 
 .page-title-section .page-title {
@@ -426,9 +466,9 @@
   left: 0;
   bottom: 0;
   width: 3rem;
-  height: 4px;
+  height: 2px;
   background: $gradient-primary;
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 .page-hero {
@@ -493,8 +533,8 @@
   margin-top: $space-2xl;
   padding-top: $space-xl;
   padding-bottom: 0;
-  box-shadow: $shadow-top;
-  border-top: $border-on-dark;
+  box-shadow: $shadow-top, inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border-top: 2px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-container {
@@ -677,12 +717,13 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  opacity: 0.65;
 }
 
 .hero-band__overlay {
   position: absolute;
   inset: 0;
-  background: $overlay-dark-strong;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), $overlay-dark-strong);
 }
 
 .hero-band__inner {
@@ -691,6 +732,7 @@
   text-align: center;
   padding-top: $space-xl;
   padding-bottom: $space-xl;
+  transition: transform 0.15s ease-out;
 }
 
 .hero-band__title {
@@ -840,15 +882,20 @@
   margin-bottom: $space-xs;
 }
 
+// Home intro section: light gray (matches header)
+.intro-section {
+  background-color: $color-header-bg;
+}
+
 // Page CTA section: deeper elevation, clearer hierarchy
 .page-cta {
   background: $surface-2;
   padding: unquote("clamp(#{$space-lg}, 4vw, #{$space-xl})");
   margin-top: $space-lg;
   text-align: center;
-  border-radius: $radius-lg;
-  border: $border-subtle;
-  box-shadow: $shadow-md;
+  border-radius: $radius-md;
+  border: $border-strong;
+  box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.5);
 
   h1, h2, h3 {
     margin-bottom: $space-sm;

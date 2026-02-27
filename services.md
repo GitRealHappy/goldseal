@@ -30,7 +30,7 @@ Licensed gas line installation and appliance connections. Safe, code-compliant g
 
 {% include section-close.html %}
 
-{% include feature-split.html heading="Trusted for Quality & Reliability" image="/assets/images/placeholder2.jpeg" image_alt="Mechanical service" surface="surface-2" body="We combine experience with a commitment to clear communication and fair pricing. When you need mechanical work done right, we're here to help." %}
+{% include feature-split.html heading="Trusted for Quality & Reliability" image="/assets/images/img4.png" image_alt="Mechanical service" surface="surface-2" body="We combine experience with a commitment to clear communication and fair pricing. When you need mechanical work done right, we're here to help." %}
 
 {% include section-open.html surface="surface-1" %}
 

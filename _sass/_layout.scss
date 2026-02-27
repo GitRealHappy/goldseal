@@ -151,8 +151,8 @@
   padding: $space-md;
   background: $surface-2;
   border-radius: $radius-md;
-  border: $border-subtle;
-  box-shadow: $shadow-card;
+  border: $border-strong;
+  box-shadow: $shadow-card, inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: box-shadow $transition-smooth;
 
   &:hover {
