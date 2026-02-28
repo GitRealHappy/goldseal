@@ -811,10 +811,27 @@
   max-width: none;
 }
 
-// CTA band with background image (placeholder3)
+// CTA band with goldenwires.png background
 .cta-band {
   position: relative;
   overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/assets/images/goldenwires.png');
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .band__inner {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .cta-band__bg {

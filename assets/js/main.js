@@ -8,8 +8,9 @@
 
   // Mobile menu toggle is handled inline in default layout for immediate availability
 
-  // Hero text parallax: moves opposite to cursor
+  // Hero text parallax: moves opposite to cursor (desktop only)
   function initHeroParallax() {
+    if (!window.matchMedia('(min-width: 768px)').matches) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var hero = document.querySelector('.hero-band');
     var inner = hero && hero.querySelector('.hero-band__inner');
@@ -34,8 +35,9 @@
     });
   }
 
-  // Service card content parallax: moves opposite to cursor within each card
+  // Service card content parallax: moves opposite to cursor within each card (desktop only)
   function initServiceCardParallax() {
+    if (!window.matchMedia('(min-width: 768px)').matches) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var cards = document.querySelectorAll('.services-grid .service-card');
     if (!cards.length) return;

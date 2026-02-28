@@ -29,8 +29,8 @@ layout: default
       {% endif %}
     </div>
     
-    <!-- Breadcrumb Navigation -->
-    {% unless page.hide_breadcrumbs %}
+    <!-- Breadcrumb Navigation (hidden when hero-band leads the page) -->
+    {% unless page.hide_breadcrumbs or page.use_hero_band %}
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol class="breadcrumb-list">
         <li class="breadcrumb-item">
@@ -62,8 +62,8 @@ layout: default
   <!-- Page Content -->
   <div class="page-content-wrapper">
     <article class="page-content">
-      <!-- Page Meta Information -->
-      {% if page.description %}
+      <!-- Page Meta Information (hidden when hero-band provides intro) -->
+      {% if page.description and page.use_hero_band != true %}
       <div class="page-description">
         <p class="lead">{{ page.description }}</p>
       </div>

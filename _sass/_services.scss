@@ -32,6 +32,7 @@
 
 // Service cards: full-bleed, no radius, slick modern
 .service-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -47,6 +48,21 @@
   border-right: $border-subtle;
   border-bottom: $border-subtle;
   overflow: hidden;
+
+  // Hover overlay: darkens smoothly (keeps image visible)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transition: opacity $transition-smooth;
+    pointer-events: none;
+    z-index: 0;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
 
   // All cards: dark mode by default with background images when NOT hovering
   &:nth-child(1),
@@ -122,24 +138,24 @@
     }
   }
 
-  // Hover: all cards go light (no background image)
+  // Hover: darker overlay, background image stays visible, gold text brightens
   &:hover {
-    background-color: $surface-2;
-    background-image: none;
-    color: $text-primary;
+    background-color: transparent;
+    color: $text-on-dark;
     text-decoration: none;
 
     .service-card__desc,
     .service-card__title {
-      color: inherit;
+      color: $text-on-dark;
     }
     .service-link {
-      color: $accent-primary;
+      color: #fff;
     }
     .service-card__icon {
-      background: linear-gradient(135deg, $accent-secondary 0%, $accent-secondary-dark 100%);
+      background: linear-gradient(135deg, lighten($accent-primary-light, 12%) 0%, $accent-primary-light 100%);
     }
   }
+
 
   &:focus-visible {
     outline: $focus-ring-width solid $focus-ring;
@@ -148,6 +164,8 @@
 }
 
 .service-card__inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

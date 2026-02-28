@@ -7,7 +7,7 @@ show_cta: true
 use_hero_band: true
 ---
 
-{% include hero-band.html title="What Our Customers Say" subtitle="We're proud of the relationships we've built and the quality of work we deliver." surface="surface-2" %}
+{% include hero-band.html title="What Our Customers Say" subtitle="We're proud of the relationships we've built and the quality of work we deliver." image="/assets/images/hero-testimonials.png" image_alt="Satisfied customer or completed project" surface="surface-2" %}
 
 {% include section-open.html surface="surface-1" %}
 

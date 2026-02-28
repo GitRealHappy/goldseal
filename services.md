@@ -2,13 +2,13 @@
 layout: page
 title: Services
 permalink: /services/
-description: Plumbing, heating, air conditioning, and gas services from licensed professionals.
+description: Plumbing, heating, air conditioning, and gas services from licensed mechanical contractors.
 sidebar: services
 show_cta: true
 use_hero_band: true
 ---
 
-{% include hero-band.html title="Full-Service Mechanical Contractors" subtitle="Gold Seal Mechanical provides complete plumbing, heating, air conditioning, and gas services for your home or business." surface="surface-2" %}
+{% include hero-band.html title="Full-Service Mechanical Contractors" subtitle="Plumbing, heating, air conditioning, and gas services for residential and commercial properties." image="/assets/images/hero-services.png" image_alt="Mechanical contractor at work" surface="surface-2" %}
 
 {% include section-open.html surface="surface-1" %}
 
@@ -18,7 +18,7 @@ Complete plumbing services for residential and commercial properties. From repai
 
 ### Heating
 
-Heating system installation, repair, and maintenance. We work on furnaces, boilers, heat pumps, and more to keep you comfortable year-round.
+Furnace, boiler, and heat pump installation, repair, and maintenance. We select the right equipment for your space, install it to code, and keep it running efficiently year-round.
 
 ### Air Conditioning
 
@@ -30,7 +30,7 @@ Licensed gas line installation and appliance connections. Safe, code-compliant g
 
 {% include section-close.html %}
 
-{% include feature-split.html heading="Trusted for Quality & Reliability" image="/assets/images/img4.png" image_alt="Mechanical service" surface="surface-2" body="We combine experience with a commitment to clear communication and fair pricing. When you need mechanical work done right, we're here to help." %}
+{% include feature-split.html heading="Why Choose Gold Seal?" image="/assets/images/img4.png" image_alt="Mechanical service" surface="surface-2" body="We take the time to diagnose problems correctly, use quality materials, and communicate clearly throughout the job. Fair pricing and work you can count on." %}
 
 {% include section-open.html surface="surface-1" %}
 

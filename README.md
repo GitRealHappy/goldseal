@@ -227,6 +227,14 @@ Content is written in Markdown with Liquid. Use `{% include ... %}` for section 
 - **JS:** `assets/js/main.js` (mobile menu, etc.)
 - **Images:** `assets/images/` — logo, placeholders, hero backgrounds
 
+### Hero images to produce (for pages with hero-band)
+
+| Page | Filename | Suggested image |
+|------|----------|------------------|
+| **Services** | `hero-services.png` | Technician at work (HVAC, plumbing, or gas)—ductwork, furnace room, or service van—conveying professional mechanical work. Wide format, works well with dark overlay. |
+| **Testimonials** | `hero-testimonials.png` | Satisfied homeowner, handshake, or completed project. Warm, trustworthy tone. |
+| **Contact** | `img3.png` (existing) | Office/storefront, service van, or team—welcoming and easy to reach. |
+
 ---
 
 ## Deployment
