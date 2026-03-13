@@ -67,17 +67,88 @@
 .section--surface-1,
 .band--surface-1 {
   background-color: $surface-1;
+  color: $text-primary;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-primary;
+  }
+
+  p, .lead, .section-lead {
+    color: $text-muted;
+  }
+
+  a:not(.btn) {
+    color: $accent-primary-dark;
+  }
 }
 
 .section--surface-2,
 .band--surface-2 {
   background-color: $surface-2;
+  color: $text-primary;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-primary;
+  }
+
+  p, .lead, .section-lead {
+    color: $text-muted;
+  }
+
+  a:not(.btn) {
+    color: $accent-primary-dark;
+  }
 }
 
 .section--surface-dark,
 .band--surface-dark {
   background-color: $surface-dark;
-  color: $color-background;
+  color: $text-on-dark;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-on-dark;
+  }
+
+  p, .lead, .section-lead {
+    color: $text-on-dark-muted;
+  }
+
+  a {
+    color: $color-primary-light;
+  }
+}
+
+// Tool chest surfaces — charcoal/near-black bands
+.section--surface-tool-dark,
+.band--surface-tool-dark {
+  background-color: $surface-tool-dark;
+  color: $text-on-dark;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-on-dark;
+  }
+
+  p, .lead, .section-lead {
+    color: $text-on-dark-muted;
+  }
+
+  a {
+    color: $color-primary-light;
+  }
+}
+
+.section--surface-tool-accent,
+.band--surface-tool-accent {
+  background-color: $surface-tool-accent;
+  color: $text-on-dark;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-on-dark;
+  }
+
+  p, .lead, .section-lead {
+    color: $text-on-dark-muted;
+  }
 
   a {
     color: $color-primary-light;
@@ -99,7 +170,15 @@
 // Page content (tightened vertical spacing for stacks)
 // ---------------------------------------------------------------------------
 
-.page-content {
+// main#main-content uses .page-content but should have no padding itself —
+// layouts manage their own spacing. Only the inner article uses these values.
+main.page-content {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.page-wrapper .page-content,
+.post-wrapper .page-content {
   padding-top: unquote("clamp(1rem, 2.5vw, 1.5rem)");
   padding-bottom: unquote("clamp(2rem, 4vw, 2.5rem)");
 
@@ -149,10 +228,10 @@
 .sidebar-widget {
   margin-bottom: $space-lg;
   padding: $space-md;
-  background: $surface-2;
+  background: $surface-tool-mid;
   border-radius: $radius-md;
-  border: $border-strong;
-  box-shadow: $shadow-card, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid darken($surface-tool-mid, 10%);
+  box-shadow: $shadow-card, inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: box-shadow $transition-smooth;
 
   &:hover {
@@ -166,6 +245,9 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: $text-primary;
+    border-bottom: 1px solid darken($surface-tool-mid, 12%);
+    padding-bottom: $space-xs;
+    margin-bottom: $space-sm;
   }
 }
 
@@ -365,5 +447,139 @@
     background: $overlay-light;
     color: $text-primary;
     border-color: transparent;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page layout: dark mode for body/main (services, contact, testimonials, etc.)
+// ---------------------------------------------------------------------------
+body.layout-page {
+  background-color: $surface-dark;
+  color: $text-on-dark;
+
+  a:not(.btn) {
+    color: $accent-primary-light;
+
+    &:hover {
+      color: lighten($accent-primary-light, 12%);
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-on-dark;
+  }
+
+  .section-lead,
+  .lead,
+  p {
+    color: $text-on-dark-muted;
+  }
+
+  // Override light surfaces to dark
+  .section--surface-1,
+  .band--surface-1,
+  .section--surface-2,
+  .band--surface-2 {
+    background-color: $surface-dark;
+    color: $text-on-dark;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: $text-on-dark;
+    }
+
+    p, .lead, .section-lead {
+      color: $text-on-dark-muted;
+    }
+
+    a:not(.btn) {
+      color: $accent-primary-light;
+
+      &:hover {
+        color: lighten($accent-primary-light, 12%);
+      }
+    }
+  }
+
+  // Alternate section for subtle variation
+  .section--surface-2,
+  .band--surface-2 {
+    background-color: $surface-dark-subtle;
+  }
+}
+
+// Page layout dark mode: components (page-title-section, breadcrumb, sidebar)
+body.layout-page {
+  .page-title-section {
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+
+    .page-title {
+      color: $text-on-dark;
+    }
+
+    .page-subtitle {
+      color: $text-on-dark-muted;
+    }
+  }
+
+  .breadcrumb-list {
+    .breadcrumb-item::after {
+      color: $text-on-dark-muted;
+    }
+
+    a {
+      color: $accent-primary-light;
+
+      &:hover {
+        color: lighten($accent-primary-light, 12%);
+      }
+    }
+
+    .active {
+      color: $text-on-dark-muted;
+    }
+  }
+
+  .sidebar-widget {
+    background: $surface-dark-subtle;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    h3 {
+      color: $text-on-dark;
+      border-bottom-color: rgba(255, 255, 255, 0.15);
+    }
+
+    a, .services-menu a {
+      color: $accent-primary-light;
+
+      &:hover {
+        color: lighten($accent-primary-light, 12%);
+      }
+    }
+
+    .contact-info,
+    .phone-large {
+      color: $text-on-dark-muted;
+    }
+
+    .phone-large a {
+      color: $text-on-dark;
+    }
+  }
+
+  .testimonial-strip__cite {
+    color: $text-on-dark-muted;
+  }
+
+  hr {
+    border-top-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .page-meta {
+    color: $text-on-dark-muted;
+
+    strong {
+      color: $text-on-dark;
+    }
   }
 }

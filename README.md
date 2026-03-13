@@ -1,6 +1,6 @@
 # Gold Seal Mechanical
 
-A Jekyll-based marketing website for **Gold Seal Mechanical**, a professional plumbing, heating, air conditioning, and gas services contractor. The site is licensed, insured, and built for clarity, accessibility, and maintainability.
+A Jekyll-based marketing website for **Gold Seal Mechanical**, a professional plumbing, heating, air conditioning, and gas services contractor. The site uses a sharp metallic, tool-chest aesthetic with gold accents, layered dark sections, and full-bleed hero bands. Built for clarity, accessibility, and maintainability.
 
 ---
 
@@ -16,6 +16,7 @@ A Jekyll-based marketing website for **Gold Seal Mechanical**, a professional pl
 - [Pages & Content](#pages--content)
 - [Collections](#collections)
 - [Assets](#assets)
+- [JavaScript](#javascript)
 - [Deployment](#deployment)
 
 ---
@@ -29,7 +30,7 @@ A Jekyll-based marketing website for **Gold Seal Mechanical**, a professional pl
 | **Styling** | Custom SCSS with design tokens |
 | **Markdown** | Kramdown |
 
-The site uses a token-based design system (gold primary, slate-teal secondary), layered section backgrounds, and reusable section patterns for consistent page composition.
+The site uses a **tool-chest aesthetic**: warm grays, charcoal bands, gold accents, and subtle metallic texture (goldenwires). Hero bands and the CTA band are full-bleed across the viewport. Service cards use background images with dark overlays and cursor-follow parallax on desktop.
 
 ---
 
@@ -51,22 +52,22 @@ goldseal/
 │   ├── footer.html
 │   └── head.html
 ├── _layouts/
-│   ├── default.html      # Base layout (header, main, footer)
-│   ├── home.html         # Homepage layout (hero, services, trust, CTA)
-│   ├── page.html         # Standard page (title, content, optional sidebar, CTA)
+│   ├── default.html      # Base layout (header, main, footer); page layout not wrapped
+│   ├── home.html         # Homepage layout (hero, intro, services, trust, CTA)
+│   ├── page.html         # Standard page (hero/CTA full-bleed; content in wrapper)
 │   └── post.html         # Blog post layout
 ├── _sass/
 │   ├── main.scss         # Entry point; imports all partials
-│   ├── _variables.scss    # Design tokens (colors, spacing, breakpoints)
+│   ├── _variables.scss   # Design tokens (tool-chest palette, surfaces, spacing)
 │   ├── _base.scss        # Typography, element defaults
 │   ├── _layout.scss      # Wrapper, bands, sections, page structure
-│   ├── _components.scss  # Buttons, header, footer, cards, breadcrumbs
-│   ├── _services.scss    # Service cards grid
-│   └── _animations.scss  # Scroll/transition animations
+│   ├── _components.scss  # Buttons, header, footer, cards, hero-band, CTA, band--tool-chest
+│   ├── _services.scss    # Service cards grid (full-bleed, background images)
+│   └── _animations.scss  # Scroll-triggered animations
 ├── _posts/               # Blog articles (Jekyll posts)
 ├── assets/
 │   ├── css/main.scss     # Compiled to main.css
-│   ├── js/main.js
+│   ├── js/main.js        # Parallax, scroll animations, mobile menu
 │   └── images/
 ├── index.md              # Homepage (uses layout: home)
 ├── services.md
@@ -114,7 +115,7 @@ All site-wide settings live in `_config.yml`:
 | Section | Purpose |
 |---------|---------|
 | **Site** | `title`, `email`, `description`, `url`, `baseurl` |
-| **Company** | `company.name`, `company.phone`, `company.emergency_phone`, `company.email`, `company.address`, `company.service_areas` |
+| **Company** | `company.name`, `company.phone`, `company.email`, `company.address`, `company.license`, `company.service_area_region`, `company.service_area_range`, `company.service_areas` |
 | **Navigation** | `navigation` array (name, url) |
 | **Services** | `services` array (name, description) |
 | **Social** | `social.facebook`, `social.twitter`, etc. |
@@ -132,27 +133,31 @@ Update `url` before deployment. Add `google_analytics` and `google_site_verifica
 ### Tokens (`_sass/_variables.scss`)
 
 - **Breakpoints:** `$bp-sm` (480px) through `$bp-2xl` (1440px)
-- **Colors:** Primary gold (`$color-primary`), slate-teal secondary (`$slate-teal`), semantic surfaces (`$surface-1`, `$surface-2`, `$surface-dark`)
+- **Tool-chest palette:** `$surface-tool-light`, `$surface-tool-mid`, `$surface-tool-dark`, `$surface-tool-accent` — warm grays and charcoal
+- **Semantic surfaces:** `$surface-1` (warm light), `$surface-2` (warm mid), `$surface-dark` (black), `$surface-tool-dark`, `$surface-tool-accent`
+- **Colors:** Primary gold (`$color-primary`), slate-teal secondary (`$slate-teal`), `$text-on-dark`, `$text-on-dark-muted`
 - **Spacing:** `$space-xs` through `$space-3xl` (rem-based)
 - **Shadows:** `$shadow-sm` through `$shadow-elevated`, `$shadow-card`, `$shadow-button`
 - **Typography:** `$font-family-base`, `$line-height-base`, `$line-height-tight`
+- **Border radius:** Sharp metallic aesthetic — `$radius-sm/md/lg` (2px)
 
 ### Layout Patterns
 
 - **Wrapper:** `.wrapper` — max-width container with responsive padding
 - **Band:** `.band` + `.band__inner` — full-bleed section with centered content
-- **Section surfaces:** `.section--surface-1`, `.section--surface-2`, `.section--surface-dark` — alternating backgrounds for visual rhythm
+- **Section surfaces:** `.section--surface-1`, `.section--surface-2`, `.section--surface-dark`, `.section--surface-tool-dark`, `.section--surface-tool-accent`
+- **Tool-chest texture:** `.band--tool-chest` — adds goldenwires.png overlay at low opacity for metallic texture
 
 ### SCSS Architecture
 
 ```
 main.scss
-├── variables    (tokens)
+├── variables    (tokens, tool-chest palette)
 ├── base         (typography, resets)
 ├── layout       (wrapper, bands, sections, page structure)
-├── components   (buttons, header, footer, cards)
-├── animations   (scroll, transitions)
-└── services     (service cards grid)
+├── components   (buttons, header, footer, hero-band, CTA, band--tool-chest)
+├── animations   (scroll-triggered transitions)
+└── services     (service cards grid, full-bleed, background images)
 ```
 
 ---
@@ -161,18 +166,28 @@ main.scss
 
 | Layout | Used By | Description |
 |--------|---------|-------------|
-| **default** | Base for all | Header, main (with optional wrapper), footer, scripts |
-| **home** | `index.md` | Hero band, intro, services section, trust block, CTA band |
-| **page** | Services, Contact, Testimonials, Rebates, Articles | Title/breadcrumbs, main content, optional sidebar, optional CTA band |
+| **default** | Base for all | Header, main (page layout content not wrapped), footer, scripts |
+| **home** | `index.md` | Hero band, intro (tool-dark), services section (tool-dark), trust block (tool-accent), CTA band |
+| **page** | Services, Contact, Testimonials, Rebates, The Library | Hero band (full-bleed, from front matter), wrapper content, optional sidebar, CTA band (full-bleed) |
 | **post** | Blog posts | Article layout with meta, content, navigation |
+
+### Page Layout Structure
+
+For pages with `use_hero_band: true`:
+
+1. **Hero band** — Rendered full-bleed at `<main>` level (outside wrapper)
+2. **Wrapper** — Page content, sidebar grid, article
+3. **CTA band** — Rendered full-bleed after wrapper (outside max-width)
+
+This ensures hero and CTA span the full viewport on all screen sizes.
 
 ### Page Layout Options (front matter)
 
 - `sidebar: services` — Services list + contact widget
-- `show_cta: true` — Adds CTA band at bottom
-- `use_hero_band: true` — Skips default H1; hero comes from content
+- `show_cta: true` — Adds CTA band at bottom (full-bleed)
+- `use_hero_band: true` — Skips default H1; hero comes from front matter; breadcrumb and page description hidden
 - `hide_breadcrumbs: true` — Hides breadcrumb nav
-- `hero_image` — Full hero image path (alternative to hero-band)
+- **Hero params** (when `use_hero_band: true`): `hero_title`, `hero_subtitle`, `hero_image`, `hero_image_alt`, `hero_surface`
 
 ---
 
@@ -182,19 +197,19 @@ main.scss
 
 | Include | Purpose | Key Params |
 |---------|---------|------------|
-| **hero-band** | Hero section with optional image | `title`, `subtitle`, `image`, `surface` |
+| **hero-band** | Full-bleed hero with optional image | `title`, `subtitle`, `image`, `image_alt`, `surface` |
 | **feature-split** | Two-column text + image | `heading`, `body`, `image`, `surface`, `reverse` |
 | **testimonial-strip** | Testimonial block | `heading`, `quote`, `author`, `surface` |
-| **cta-band** | Dark CTA with buttons | `title`, `text`, `primary_label`, `secondary_label` |
+| **cta-band** | Dark CTA with goldenwires background | `title`, `text`, `primary_label`, `secondary_label` |
 | **section-open** / **section-close** | Wrap content in a surface section | `surface` (e.g. `surface-1`) |
 
 ### Homepage-Specific
 
 | Include | Purpose |
 |---------|---------|
-| **services-section** | Services heading + services-grid |
-| **services-grid** | Grid of service cards (Heat Pumps, Furnaces, etc.) |
-| **trust-block** | “Why Choose Gold Seal?” with image and CTA |
+| **services-section** | Services heading + services-grid (tool-dark surface, band--tool-chest texture) |
+| **services-grid** | Full-bleed grid of service cards (no gaps, no radius, background images) |
+| **trust-block** | "Why Choose Gold Seal?" with image and CTA |
 
 ---
 
@@ -202,20 +217,20 @@ main.scss
 
 | Page | Path | Layout | Notes |
 |------|------|--------|------|
-| Home | `/` | home | Hero, intro, services, trust, CTA |
-| Services | `/services/` | page | Hero band, service list, feature-split, sidebar |
-| Contact | `/contact/` | page | Hero band, contact details, CTA |
-| Testimonials | `/testimonials/` | page | Hero band, testimonials, feature-split, CTA |
+| Home | `/` | home | Hero (img1.png), intro (tool-dark), services (tool-dark), trust (tool-accent), CTA |
+| Services | `/services/` | page | Hero band (hero-services.png), service list, feature-split, sidebar |
+| Contact | `/contact/` | page | Hero band (img3.png), contact details, CTA |
+| Testimonials | `/testimonials/` | page | Hero band (hero-testimonials.png), testimonials, feature-split, CTA |
 | Rebates | `/rebates/` | page | Standard content, CTA |
-| Articles | `/articles/` | page | Paginated blog index |
+| The Library | `/library/` | page | Paginated blog index |
 
-Content is written in Markdown with Liquid. Use `{% include ... %}` for section patterns and `{% include section-open.html surface="surface-1" %}` … `{% include section-close.html %}` to wrap blocks.
+Pages with `use_hero_band: true` define hero content in front matter; no hero-band include in the markdown body.
 
 ---
 
 ## Collections
 
-- **`_posts`** — Blog articles. Permalink: `/articles/:year/:month/:day/:title/`
+- **`_posts`** — Blog articles. Permalink: `/library/:year/:month/:day/:title/`
 - **`services`** — Output: true, permalink `/services/:name/` (no items in repo yet)
 - **`testimonials`** — Output: false (for future use)
 
@@ -224,16 +239,43 @@ Content is written in Markdown with Liquid. Use `{% include ... %}` for section 
 ## Assets
 
 - **CSS:** `assets/css/main.scss` → compiled to `main.css`
-- **JS:** `assets/js/main.js` (mobile menu, etc.)
-- **Images:** `assets/images/` — logo, placeholders, hero backgrounds
+- **JS:** `assets/js/main.js` (parallax, scroll animations, mobile menu)
+- **Images:** `assets/images/` — logo, hero backgrounds, service card images, goldenwires.png
 
-### Hero images to produce (for pages with hero-band)
+### Hero Images
 
-| Page | Filename | Suggested image |
-|------|----------|------------------|
-| **Services** | `hero-services.png` | Technician at work (HVAC, plumbing, or gas)—ductwork, furnace room, or service van—conveying professional mechanical work. Wide format, works well with dark overlay. |
-| **Testimonials** | `hero-testimonials.png` | Satisfied homeowner, handshake, or completed project. Warm, trustworthy tone. |
-| **Contact** | `img3.png` (existing) | Office/storefront, service van, or team—welcoming and easy to reach. |
+| Page | Image | Notes |
+|------|-------|-------|
+| Home | `img1.png` | Hero band background |
+| Services | `hero-services.png` | Hero band background |
+| Testimonials | `hero-testimonials.png` | Hero band background |
+| Contact | `img3.png` | Hero band background |
+
+### Service Card Images
+
+| Card | Image | Notes |
+|------|-------|-------|
+| Heat Pumps | `placeholder1.png` | Background with 50% dark overlay |
+| Furnaces & Boilers | `placeholder2.png` | Background with 50% dark overlay |
+| Water Heaters | `waterheater.png` | Background with 50% dark overlay |
+| Mechanical Services | `mechanical.png` | Background with 50% dark overlay |
+
+Hover: darker overlay (35%), gold text brightens; background image stays visible.
+
+### CTA Band
+
+- **goldenwires.png** — Repeating horizontal lines texture at 15% opacity
+
+---
+
+## JavaScript
+
+- **Hero parallax** — Cursor-follow effect on hero-band text (desktop only, ≥768px)
+- **Service card parallax** — Cursor-follow effect on service card content (desktop only)
+- **Scroll animations** — `.animate-on-scroll` elements fade/slide in when entering viewport
+- **Mobile menu** — Hamburger toggle, dark mode when active
+
+Parallax is disabled on mobile (viewport &lt; 768px) and when `prefers-reduced-motion: reduce` is set.
 
 ---
 

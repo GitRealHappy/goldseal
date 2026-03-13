@@ -5,16 +5,16 @@ permalink: /contact/
 description: Get in touch with Gold Seal Mechanical for quotes and service.
 show_cta: true
 use_hero_band: true
+hero_title: "Contact Gold Seal Mechanical"
+hero_subtitle: "We're here to help with your plumbing, heating, cooling, and gas needs."
+hero_image: "/assets/images/img3.png"
+hero_image_alt: "Contact Gold Seal Mechanical"
+hero_surface: "surface-dark"
 ---
-
-{% include hero-band.html title="Contact Gold Seal Mechanical" subtitle="We're here to help with your plumbing, heating, cooling, and gas needs." image="/assets/images/img3.png" image_alt="Contact Gold Seal Mechanical" surface="surface-dark" %}
-
-{% include section-open.html surface="surface-1" %}
 
 ### Phone
 
 - **Office:** [{{ site.company.phone }}](tel:{{ site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }})
-- **Emergency (24/7):** [{{ site.company.emergency_phone }}](tel:{{ site.company.emergency_phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }})
 
 ### Email
 
@@ -26,14 +26,11 @@ use_hero_band: true
 
 ### Service Areas
 
+{{ site.company.service_area_region }} — {{ site.company.service_area_range }}
+
 {% for area in site.company.service_areas %}
 - {{ area }}
 {% endfor %}
 
-{% include section-close.html %}
+*We'll respond to inquiries as quickly as possible.*
 
-{% include section-open.html surface="surface-2" %}
-
-*We'll respond to inquiries as quickly as possible. For urgent issues, please call our emergency line.*
-
-{% include section-close.html %}

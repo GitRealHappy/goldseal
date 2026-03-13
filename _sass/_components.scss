@@ -83,15 +83,15 @@
 }
 
 // -----------------------------------------------------------------------------
-// Site header: sleeker sticky, depth, stronger nav states
+// Site header: dark mode (light version saved in _header-light.scss)
 // -----------------------------------------------------------------------------
 .site-header {
-  background: linear-gradient(180deg, lighten($color-header-bg, 2%) 0%, $color-header-bg 100%);
-  box-shadow: $shadow-sm, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: linear-gradient(180deg, lighten($surface-dark, 4%) 0%, $surface-dark 100%);
+  box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.06);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: $border-strong;
+  border-bottom: $border-on-dark;
   transition: box-shadow $transition-smooth;
 }
 
@@ -144,7 +144,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: $text-primary;
+    color: $text-on-dark;
     text-decoration: none;
     transition: color $transition-base;
 
@@ -153,17 +153,17 @@
     }
 
     &:hover {
-      color: $text-primary;
+      color: $text-on-dark;
     }
   }
 
   .logo {
-    height: 38px;
+    height: 57px;
     width: auto;
     flex-shrink: 0;
 
     @media (min-width: $bp-md) {
-      height: 48px;
+      height: 72px;
     }
   }
 
@@ -177,6 +177,7 @@
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.2;
+    color: $text-on-dark;
 
     @media (min-width: $bp-md) {
       font-size: 1.125rem;
@@ -186,7 +187,7 @@
   .company-tagline {
     margin: 0.15em 0 0;
     font-size: 0.6875rem;
-    color: $text-muted;
+    color: $text-on-dark-muted;
     letter-spacing: 0.02em;
 
     @media (max-width: #{$bp-md - 1px}) {
@@ -212,7 +213,7 @@
   }
 
   .contact-label {
-    color: $text-muted;
+    color: $text-on-dark-muted;
     font-weight: 500;
     margin-right: 0.35em;
   }
@@ -220,16 +221,16 @@
   .contact-phone,
   .contact-email {
     font-weight: 600;
-    color: $text-primary;
+    color: $text-on-dark;
     transition: color $transition-base;
 
     &:hover {
-      color: $accent-primary;
+      color: $accent-primary-light;
     }
   }
 }
 
-// Mobile menu toggle: sharp metallic design, smooth animation
+// Mobile menu toggle: dark mode
 .mobile-menu-toggle {
   display: flex;
   flex-direction: column;
@@ -239,8 +240,8 @@
   min-width: $touch-target-min;
   min-height: $touch-target-min;
   padding: 0;
-  background: linear-gradient(180deg, lighten($surface-2, 2%) 0%, $surface-2 100%);
-  border: 1px solid darken($color-border, 8%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: $radius-sm;
   cursor: pointer;
   box-shadow: $shadow-sm, inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -253,13 +254,13 @@
   }
 
   &:hover {
-    background: linear-gradient(180deg, $surface-3 0%, darken($surface-3, 2%) 100%);
-    border-color: darken($color-border, 12%);
-    box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
   &:focus-visible {
-    outline: $focus-ring-width solid $focus-ring;
+    outline: $focus-ring-width solid $focus-ring-on-dark;
     outline-offset: $focus-ring-offset;
   }
 
@@ -267,7 +268,7 @@
     display: block;
     width: 20px;
     height: 2px;
-    background: $text-primary;
+    background: $text-on-dark;
     border-radius: 0;
     transform-origin: center;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -275,8 +276,8 @@
   }
 
   &.active {
-    background: $surface-dark;
-    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
     box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
     span {
@@ -295,21 +296,21 @@
   }
 }
 
-// Main navigation: sharp metallic mobile drawer, stronger desktop hover/active
+// Main navigation: dark mode
 .main-navigation {
-  border-top: $border-subtle;
+  border-top: $border-on-dark;
 
   @media (max-width: #{$bp-md - 1px}) {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: linear-gradient(180deg, $surface-2 0%, darken($surface-2, 1%) 100%);
-    border-top: 1px solid darken($color-border, 10%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, $surface-dark-subtle 0%, $surface-dark 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
     &.mobile-open {
       max-height: 420px;
-      box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
   }
 }
@@ -334,7 +335,7 @@
 
 .nav-item {
   @media (max-width: #{$bp-md - 1px}) {
-    border-bottom: 1px solid darken($color-border, 6%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
     &:last-child {
       border-bottom: none;
@@ -354,7 +355,7 @@
   padding: 0.7rem $space-sm;
   font-weight: 600;
   font-size: 0.9375rem;
-  color: $text-primary;
+  color: $text-on-dark-muted;
   position: relative;
   transition: color $transition-smooth, background $transition-base;
 
@@ -391,7 +392,7 @@
     }
 
     &.active {
-      background: $surface-dark;
+      background: rgba(255, 255, 255, 0.12);
       color: $text-on-dark;
       font-weight: 700;
       border-left: 3px solid $accent-primary;
@@ -399,26 +400,26 @@
       padding-left: calc(#{$space-sm} - 3px);
 
       &:hover {
-        background: $surface-dark-subtle;
+        background: rgba(255, 255, 255, 0.16);
         color: $text-on-dark;
       }
     }
 
     &:hover {
-      background: $surface-3;
-      color: $accent-secondary;
+      background: rgba(255, 255, 255, 0.08);
+      color: $accent-primary-light;
     }
   }
 
   &:focus-visible {
-    outline: $focus-ring-width solid $focus-ring;
+    outline: $focus-ring-width solid $focus-ring-on-dark;
     outline-offset: $focus-ring-offset;
   }
 
   @media (min-width: $bp-md) {
     &:hover {
-      color: $accent-primary;
-      background: $surface-3;
+      color: $accent-primary-light;
+      background: rgba(255, 255, 255, 0.08);
     }
 
     &:hover::after {
@@ -426,7 +427,7 @@
     }
 
     &.active {
-      background: $surface-dark;
+      background: rgba(255, 255, 255, 0.12);
       color: $text-on-dark;
       font-weight: 700;
 
@@ -436,7 +437,7 @@
       }
 
       &:hover {
-        background: $surface-dark-subtle;
+        background: rgba(255, 255, 255, 0.16);
         color: $text-on-dark;
       }
 
@@ -444,6 +445,106 @@
         outline-color: $focus-ring-on-dark;
       }
     }
+  }
+}
+
+// Navigation dropdown styles
+.nav-item--dropdown {
+  position: relative;
+}
+
+.dropdown-arrow {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+  transition: transform $transition-smooth;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $surface-dark;
+  border: $border-on-dark;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition: opacity $transition-smooth, visibility $transition-smooth, transform $transition-smooth;
+  z-index: 1000;
+  min-width: 200px;
+
+  @media (max-width: #{$bp-md - 1px}) {
+    position: static;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    margin-left: $space-md;
+    margin-top: 0.5rem;
+    border-left: 2px solid $accent-primary;
+    padding-left: $space-sm;
+  }
+
+  li {
+    margin: 0;
+    border: none;
+  }
+}
+
+.dropdown-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: $text-on-dark-muted;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color $transition-smooth, background $transition-smooth;
+  border-radius: 0;
+
+  &:hover {
+    color: $text-on-dark;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &::after {
+    display: none;
+  }
+
+  @media (max-width: #{$bp-md - 1px}) {
+    padding: 0.5rem 0;
+    background: transparent;
+    
+    &:hover {
+      background: transparent;
+      color: $accent-primary-light;
+    }
+  }
+}
+
+.nav-item--dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+
+  @media (max-width: #{$bp-md - 1px}) {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+.nav-item--dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+
+  @media (max-width: #{$bp-md - 1px}) {
+    transform: none;
   }
 }
 
@@ -565,6 +666,12 @@
   .areas-list {
     font-size: 0.9375rem;
     line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
+  .service-area-region,
+  .areas-range {
+    margin-bottom: 0.35rem;
   }
 
   .contact-details .contact-item,
@@ -696,18 +803,40 @@
 
 .hero-band {
   position: relative;
-  min-height: unquote("min(280px, 60vh)");
+  min-height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 
   @media (min-width: $bp-md) {
-    min-height: 360px;
+    min-height: 320px;
   }
 
   @media (min-width: $bp-lg) {
     min-height: 420px;
+  }
+}
+
+.hero-band--short {
+  min-height: 120px;
+  
+  @media (min-width: $bp-md) {
+    min-height: 180px;
+  }
+
+  @media (min-width: $bp-lg) {
+    min-height: 220px;
+  }
+
+  .hero-band__inner {
+    padding-top: $space-sm;
+    padding-bottom: $space-sm;
+
+    @media (min-width: $bp-md) {
+      padding-top: $space-md;
+      padding-bottom: $space-md;
+    }
   }
 }
 
@@ -730,27 +859,46 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  padding-top: $space-xl;
-  padding-bottom: $space-xl;
+  padding-top: $space-md;
+  padding-bottom: $space-md;
+  padding-left: $space-md;
+  padding-right: $space-md;
   transition: transform 0.15s ease-out;
+
+  @media (min-width: $bp-md) {
+    padding-top: $space-xl;
+    padding-bottom: $space-xl;
+  }
 }
 
 .hero-band__title {
   margin: 0 0 $space-xs;
   color: $text-on-dark;
-  font-size: unquote("clamp(1.875rem, 1.5rem + 1.25vw, 2.75rem)");
+  font-size: unquote("clamp(1.25rem, 1rem + 1.5vw, 2.75rem)");
   font-weight: 800;
   letter-spacing: -0.03em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .hero-band__tagline {
-  margin: 0 0 $space-lg;
+  margin: 0 0 $space-sm;
   color: $text-on-dark-muted;
-  font-size: unquote("clamp(1rem, 0.95rem + 0.25vw, 1.125rem)");
+  font-size: unquote("clamp(0.875rem, 0.8rem + 0.4vw, 1.125rem)");
   max-width: 36ch;
   margin-left: auto;
   margin-right: auto;
+
+  @media (min-width: $bp-md) {
+    margin-bottom: $space-lg;
+  }
+}
+
+.hero-band__mobile-cta {
+  margin-top: $space-sm;
+  
+  @media (min-width: $bp-md) {
+    display: none;
+  }
 }
 
 .hero-band__actions {
@@ -809,6 +957,31 @@
 .trust-block__text {
   margin-bottom: $space-md;
   max-width: none;
+}
+
+// Shared tool-chest texture modifier — applies goldenwires overlay to any band/section
+// Use alongside a surface class: class="section--surface-tool-dark band--tool-chest"
+.band--tool-chest {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/assets/images/goldenwires.png');
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  > .band__inner,
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 // CTA band with goldenwires.png background
@@ -899,10 +1072,7 @@
   margin-bottom: $space-xs;
 }
 
-// Home intro section: light gray (matches header)
-.intro-section {
-  background-color: $color-header-bg;
-}
+// Home intro section: tool-dark surface (set in layout, this override removed)
 
 // Page CTA section: deeper elevation, clearer hierarchy
 .page-cta {
@@ -977,9 +1147,10 @@
   &.linkedin { background: #0a66c2; }
 }
 
-// Services list, contact widget
+// Services list, contact widget, areas list
 .services-list,
-.services-menu {
+.services-menu,
+.areas-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -988,8 +1159,7 @@
   }
 }
 
-.phone-large,
-.phone-emergency {
+.phone-large {
   font-size: 1.25rem;
   font-weight: 700;
 }
@@ -1052,4 +1222,132 @@
 .pagination-prev,
 .pagination-next {
   font-weight: 500;
+}
+
+.page-main-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: $space-md;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-xs;
+
+  @media (min-width: $bp-md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-sm;
+  }
+}
+
+.page-main-content ul li {
+  flex: 1 1 calc(100% - $space-xs);
+  background-color: black;
+  padding: $space-sm;
+  border-radius: $radius-sm;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: white;
+
+  @media (min-width: $bp-md) {
+    flex: none;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.footer-social .social-link {
+  opacity: 0.5;
+  color: $text-on-dark-muted;
+
+  &:hover {
+    opacity: 0.7;
+    color: $accent-primary-light;
+  }
+}
+
+// Service Areas Button & Popup
+.service-areas-button {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: $text-on-dark;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  margin-top: $space-sm;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.service-areas-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.service-areas-popup-content {
+  background-color: $surface-dark;
+  color: $text-on-dark;
+  padding: $space-lg;
+  border-radius: $radius-md;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  text-align: left;
+
+  h4 {
+    color: $text-on-dark;
+    margin-top: 0;
+    margin-bottom: $space-md;
+  }
+
+  .areas-list {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0;
+    columns: 2;
+    column-gap: $space-md;
+
+    li {
+      margin-bottom: $space-xs;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.service-areas-popup-close {
+  position: absolute;
+  top: $space-xs;
+  right: $space-sm;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: $text-on-dark-muted;
+  cursor: pointer;
+
+  &:hover {
+    color: $text-on-dark;
+  }
 }

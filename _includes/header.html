@@ -39,11 +39,25 @@
       <div class="nav-container">
         <ul class="nav-menu">
           {% for nav_item in site.navigation %}
-          <li class="nav-item">
+          <li class="nav-item{% if nav_item.name == 'Services' %} nav-item--dropdown{% endif %}">
+            {% if nav_item.name == 'Services' %}
+            <a href="{{ nav_item.url | relative_url }}" 
+               class="nav-link{% if page.url == nav_item.url %} active{% endif %}">
+              {{ nav_item.name }}
+              <span class="dropdown-arrow">▼</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ '/services/plumbing-services/' | relative_url }}" class="dropdown-link">Plumbing Services</a></li>
+              <li><a href="{{ '/services/heating/' | relative_url }}" class="dropdown-link">Heating</a></li>
+              <li><a href="{{ '/services/air-conditioners/' | relative_url }}" class="dropdown-link">Air Conditioners</a></li>
+              <li><a href="{{ '/services/gas-work/' | relative_url }}" class="dropdown-link">Gas Work</a></li>
+            </ul>
+            {% else %}
             <a href="{{ nav_item.url | relative_url }}" 
                class="nav-link{% if page.url == nav_item.url %} active{% endif %}">
               {{ nav_item.name }}
             </a>
+            {% endif %}
           </li>
           {% endfor %}
         </ul>

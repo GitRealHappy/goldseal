@@ -1,22 +1,51 @@
 <div class="services-grid" role="list">
-  {% assign services = "Heat Pumps::Installation, replacement, and service for energy-efficient heat pump systems.::/heat-pumps/||Furnaces & Boilers::Reliable installation and repair of furnaces and boiler systems.::/furnaces-boilers/||Water Heaters::Installation and service for tank and tankless water heaters.::/water-heaters/||Mechanical Services::General heating and mechanical system maintenance and repairs.::/services/" %}
-  {% assign services_list = services | split: "||" %}
-  {% assign icons = "thermometer|fire|droplet|wrench" | split: "|" %}
+  <!-- Heat Pumps (original) -->
+  <a href="{{ '/contact/' | relative_url }}" class="service-card" role="listitem">
+    <article class="service-card__inner">
+      <span class="service-card__icon service-card__icon--thermometer" aria-hidden="true"></span>
+      <h3 class="service-card__title">Heat Pumps</h3>
+      <p class="service-card__desc">Installation, replacement, and service for energy-efficient heat pump systems.</p>
+      <span class="service-link">Request an Estimate</span>
+    </article>
+  </a>
 
-  {% for item in services_list %}
-    {% assign service = item | split: "::" %}
-    {% assign title = service[0] %}
-    {% assign desc = service[1] %}
-    {% assign url = service[2] %}
-    {% assign icon = icons[forloop.index0] %}
+  <!-- Furnaces & Boilers (original) -->
+  <a href="{{ '/contact/' | relative_url }}" class="service-card" role="listitem">
+    <article class="service-card__inner">
+      <span class="service-card__icon service-card__icon--fire" aria-hidden="true"></span>
+      <h3 class="service-card__title">Furnaces & Boilers</h3>
+      <p class="service-card__desc">Reliable installation and repair of furnaces and boiler systems.</p>
+      <span class="service-link">Request an Estimate</span>
+    </article>
+  </a>
 
-    <a href="{{ url | relative_url }}" class="service-card" role="listitem">
-      <article class="service-card__inner">
-        <span class="service-card__icon service-card__icon--{{ icon }}" aria-hidden="true"></span>
-        <h3 class="service-card__title">{{ title }}</h3>
-        <p class="service-card__desc">{{ desc }}</p>
-        <span class="service-link">Request an Estimate</span>
-      </article>
-    </a>
-  {% endfor %}
+  <!-- Water Heaters (original) -->
+  <a href="{{ '/contact/' | relative_url }}" class="service-card" role="listitem">
+    <article class="service-card__inner">
+      <span class="service-card__icon service-card__icon--droplet" aria-hidden="true"></span>
+      <h3 class="service-card__title">Water Heaters</h3>
+      <p class="service-card__desc">Installation and service for tank and tankless water heaters.</p>
+      <span class="service-link">Request an Estimate</span>
+    </article>
+  </a>
+
+  <!-- Plumbing Services (new) -->
+  <a href="{{ '/services/plumbing-services/' | relative_url }}" class="service-card service-card--plumbing" role="listitem">
+    <article class="service-card__inner">
+      <span class="service-card__icon service-card__icon--wrench" aria-hidden="true"></span>
+      <h3 class="service-card__title">Plumbing Services</h3>
+      <p class="service-card__desc">Complete plumbing services for residential and commercial properties from licensed plumbers.</p>
+      <span class="service-link">Learn More</span>
+    </article>
+  </a>
+
+  <!-- Air Conditioners (new) -->
+  <a href="{{ '/services/air-conditioners/' | relative_url }}" class="service-card service-card--air-conditioning" role="listitem">
+    <article class="service-card__inner">
+      <span class="service-card__icon service-card__icon--snowflake" aria-hidden="true"></span>
+      <h3 class="service-card__title">Air Conditioners</h3>
+      <p class="service-card__desc">Professional air conditioning installation, repair, and maintenance services. Central AC, ductless systems.</p>
+      <span class="service-link">Learn More</span>
+    </article>
+  </a>
 </div>

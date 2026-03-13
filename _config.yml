@@ -11,15 +11,22 @@ url: "[not yet set]" # the base hostname & protocol for your site
 # Company information
 company:
   name: "Gold Seal Mechanical"
-  phone: "(555) 123-4567"
-  emergency_phone: "(555) 123-HELP"
+  phone: "604-551-1512"
   email: "goldsealheating@outlook.com"
-  address: "123 Service Street, Your City, State 12345"
+  address: "2417 Mt Lehman Rd. Abbotsford BC"
   license: "Licensed & Insured"
+  service_area_region: "Fraser Valley & Greater Vancouver area"
+  service_area_range: "Chilliwack to North Vancouver"
   service_areas:
-    - "Your City"
-    - "Nearby Town"
-    - "Another Area"
+    - "Chilliwack"
+    - "Abbotsford"
+    - "Mission"
+    - "Langley"
+    - "Surrey"
+    - "Vancouver"
+    - "Burnaby"
+    - "Coquitlam"
+    - "North Vancouver"
 
 # Navigation
 navigation:
@@ -29,8 +36,8 @@ navigation:
     url: "/services/"
   - name: "Testimonials"
     url: "/testimonials/"
-  - name: "Articles"
-    url: "/articles/"
+  - name: "The Library"
+    url: "/library/"
   - name: "Rebates"
     url: "/rebates/"
   - name: "Contact"
@@ -38,11 +45,11 @@ navigation:
 
 # Services offered
 services:
-  - name: "Plumbing"
+  - name: "Plumbing Services"
     description: "Complete plumbing services for residential and commercial properties"
   - name: "Heating"
     description: "Heating system installation, repair, and maintenance"
-  - name: "Air Conditioning"
+  - name: "Air Conditioners"
     description: "AC installation, repair, and seasonal maintenance"
   - name: "Gas Work"
     description: "Licensed gas line installation and appliance connections"
@@ -57,7 +64,7 @@ social:
 # Blog settings
 blog:
   paginate: 6
-  paginate_path: "/articles/page:num/"
+  paginate_path: "/library/page:num/"
 
 # Build settings
 markdown: kramdown
@@ -73,7 +80,7 @@ plugins:
 
 # Pagination (for blog index at articles/index.html)
 paginate: 6
-paginate_path: "/articles/page:num/"
+paginate_path: "/library/page:num/"
 
 # Collections
 collections:
@@ -91,7 +98,7 @@ defaults:
     values:
       layout: "post"
       author: "Gold Seal Mechanical"
-      permalink: /articles/:year/:month/:day/:title/
+      permalink: /library/:year/:month/:day/:title/
   - scope:
       path: ""
       type: "pages"
@@ -124,9 +131,3 @@ google_site_verification: # Add your Google site verification code here
 contact_form:
   action: "#" # Will be updated when form handling is implemented
   method: "POST"
-
-# Emergency service
-emergency:
-  available: true
-  hours: "24/7 Emergency Service Available"
-  message: "Call now for emergency plumbing, heating, or gas service"

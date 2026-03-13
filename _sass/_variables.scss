@@ -13,7 +13,8 @@ $bp-2xl: 1440px;
 // -----------------------------------------------------------------------------
 // Typography (compatible with future content rewrite)
 // -----------------------------------------------------------------------------
-$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-heading: 'Merriweather', serif;
+$font-family-base: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 $line-height-base: 1.6;
 $line-height-tight: 1.3;
 
@@ -28,11 +29,17 @@ $color-primary-dark: #a6851f;
 $color-accent: #1a1a1a;
 $color-background: #fff;
 $color-background-alt: #fafafa;
-$color-border: #e8e8e8;
-$color-border-light: #f0f0f0;
+$color-border: #c0bdb6;        // warm gray border, matches tool-chest palette
+$color-border-light: #d0cdc6; // lighter warm gray border
 
-// Light gray (header, intro section)
-$color-header-bg: #eaeaea;
+// Tool chest palette — warm, industrial, metallic
+$surface-tool-light:  #e4e2dd;   // warm light gray
+$surface-tool-mid:    #cac8c2;   // warm mid gray, brushed metal tone
+$surface-tool-dark:   #2a2826;   // charcoal, lighter than surface-dark
+$surface-tool-accent: #1f1d1b;   // near-black, deepest contrast band
+
+// Light gray (header, intro section) — warmer than plain eaeaea
+$color-header-bg: #d8d6d0;
 
 // Option B: Slate-teal (secondary brand)
 $slate-teal: #3d5a6c;
@@ -43,9 +50,9 @@ $slate-teal-muted: #5a7a8a;
 // -----------------------------------------------------------------------------
 // Semantic surface & text tokens (layered backgrounds, darker tone)
 // -----------------------------------------------------------------------------
-$surface-1: $color-background;
-$surface-2: $color-background-alt;
-$surface-3: darken($color-background-alt, 2%);
+$surface-1: $surface-tool-light;
+$surface-2: $surface-tool-mid;
+$surface-3: darken($surface-tool-mid, 3%);
 $surface-dark: $color-accent;
 $surface-dark-subtle: lighten($color-accent, 4%);
 

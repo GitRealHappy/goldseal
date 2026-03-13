@@ -1,0 +1,346 @@
+// -----------------------------------------------------------------------------
+// HEADER - LIGHT MODE (original/backup)
+// Save this file for reverting. Not imported by main.scss.
+// To switch back: replace the header section in _components.scss with this content.
+// -----------------------------------------------------------------------------
+
+.site-header {
+  background: linear-gradient(180deg, lighten($color-header-bg, 3%) 0%, $color-header-bg 100%);
+  box-shadow: $shadow-sm, inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: $border-strong;
+  transition: box-shadow $transition-smooth;
+}
+
+.main-header {
+  padding: $space-xs 0 $space-sm;
+
+  @media (min-width: $bp-md) {
+    padding: $space-sm 0 $space-md;
+  }
+}
+
+.header-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-xs;
+
+  @media (min-width: $bp-md) {
+    gap: $space-sm;
+  }
+}
+
+.brand {
+  flex-shrink: 0;
+  min-width: 0;
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $text-primary;
+    text-decoration: none;
+    transition: color $transition-base;
+
+    @media (min-width: $bp-md) {
+      gap: 0.75rem;
+    }
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+
+  .logo {
+    height: 57px;
+    width: auto;
+    flex-shrink: 0;
+
+    @media (min-width: $bp-md) {
+      height: 72px;
+    }
+  }
+
+  .company-info {
+    min-width: 0;
+  }
+
+  .company-name {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+
+    @media (min-width: $bp-md) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .company-tagline {
+    margin: 0.15em 0 0;
+    font-size: 0.6875rem;
+    color: $text-muted;
+    letter-spacing: 0.02em;
+
+    @media (max-width: #{$bp-md - 1px}) {
+      display: none;
+    }
+  }
+}
+
+.header-contact {
+  display: none;
+
+  @media (min-width: $bp-md) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    flex-shrink: 0;
+    font-size: 0.875rem;
+  }
+
+  .contact-item {
+    white-space: nowrap;
+  }
+
+  .contact-label {
+    color: $text-muted;
+    font-weight: 500;
+    margin-right: 0.35em;
+  }
+
+  .contact-phone,
+  .contact-email {
+    font-weight: 600;
+    color: $text-primary;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $accent-primary;
+    }
+  }
+}
+
+// Mobile menu toggle: sharp metallic design, smooth animation
+.mobile-menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-width: $touch-target-min;
+  min-height: $touch-target-min;
+  padding: 0;
+  background: linear-gradient(180deg, lighten($surface-2, 2%) 0%, $surface-2 100%);
+  border: 1px solid darken($color-border, 8%);
+  border-radius: $radius-sm;
+  cursor: pointer;
+  box-shadow: $shadow-sm, inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s ease,
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (min-width: $bp-md) {
+    display: none;
+  }
+
+  &:hover {
+    background: linear-gradient(180deg, $surface-3 0%, darken($surface-3, 2%) 100%);
+    border-color: darken($color-border, 12%);
+    box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus-visible {
+    outline: $focus-ring-width solid $focus-ring;
+    outline-offset: $focus-ring-offset;
+  }
+
+  span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: $text-primary;
+    border-radius: 0;
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.active {
+    background: $surface-dark;
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    span {
+      background: $text-on-dark;
+    }
+  }
+
+  &.active span:nth-child(1) {
+    transform: translateY(4px) rotate(45deg);
+  }
+  &.active span:nth-child(2) {
+    opacity: 0;
+  }
+  &.active span:nth-child(3) {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+}
+
+// Main navigation: sharp metallic mobile drawer, stronger desktop hover/active
+.main-navigation {
+  border-top: $border-subtle;
+
+  @media (max-width: #{$bp-md - 1px}) {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(180deg, $surface-2 0%, darken($surface-2, 1%) 100%);
+    border-top: 1px solid darken($color-border, 10%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+    &.mobile-open {
+      max-height: 420px;
+      box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+
+  @media (max-width: #{$bp-md - 1px}) {
+    flex-direction: column;
+    padding: $space-xs 0 $space-sm;
+  }
+
+  @media (min-width: $bp-md) {
+    gap: 0.35rem;
+  }
+}
+
+.nav-item {
+  @media (max-width: #{$bp-md - 1px}) {
+    border-bottom: 1px solid darken($color-border, 6%);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    border-left: none;
+  }
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $touch-target-min;
+  padding: 0.7rem $space-sm;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: $text-primary;
+  position: relative;
+  transition: color $transition-smooth, background $transition-base;
+
+  @media (min-width: $bp-md) {
+    min-height: auto;
+    padding: 0.75rem 1.35rem;
+    margin: 0 0.2rem;
+    font-size: 1rem;
+    border-radius: $radius-md;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0.35rem;
+    width: 0;
+    height: 2px;
+    background: $gradient-primary;
+    border-radius: 0;
+    transform: translateX(-50%);
+    transition: width $transition-smooth;
+  }
+
+  @media (min-width: $bp-md) {
+    &::after {
+      bottom: 0.2rem;
+    }
+  }
+
+  @media (max-width: #{$bp-md - 1px}) {
+    &::after {
+      display: none;
+    }
+
+    &.active {
+      background: $surface-dark;
+      color: $text-on-dark;
+      font-weight: 700;
+      border-left: 3px solid $accent-primary;
+      margin: 0 $space-xs;
+      padding-left: calc(#{$space-sm} - 3px);
+
+      &:hover {
+        background: $surface-dark-subtle;
+        color: $text-on-dark;
+      }
+    }
+
+    &:hover {
+      background: $surface-3;
+      color: $accent-secondary;
+    }
+  }
+
+  &:focus-visible {
+    outline: $focus-ring-width solid $focus-ring;
+    outline-offset: $focus-ring-offset;
+  }
+
+  @media (min-width: $bp-md) {
+    &:hover {
+      color: $accent-primary;
+      background: $surface-3;
+    }
+
+    &:hover::after {
+      width: 1.5rem;
+    }
+
+    &.active {
+      background: $surface-dark;
+      color: $text-on-dark;
+      font-weight: 700;
+
+      &::after {
+        width: 2rem;
+        background: linear-gradient(90deg, $accent-primary-light, $accent-primary);
+      }
+
+      &:hover {
+        background: $surface-dark-subtle;
+        color: $text-on-dark;
+      }
+
+      &:focus-visible {
+        outline-color: $focus-ring-on-dark;
+      }
+    }
+  }
+}

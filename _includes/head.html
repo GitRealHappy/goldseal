@@ -19,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   
   <!-- SEO and Social Media Meta Tags -->
   {% seo %}
@@ -41,11 +42,17 @@
       "streetAddress": "{{ site.company.address }}"
     },
     "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates"
-      }
+      "@type": "AdministrativeArea",
+      "name": "{{ site.company.service_area_region }}"
     },
+    "areaServed": [
+      {% for area in site.company.service_areas %}
+      {
+        "@type": "City",
+        "name": "{{ area }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
     "priceRange": "$$",
     "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-17:00",
     "hasOfferCatalog": {

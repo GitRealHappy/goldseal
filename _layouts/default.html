@@ -3,14 +3,14 @@
 
   {% include head.html %}
 
-  <body class="{% if page.body_class %}{{ page.body_class }}{% endif %}">
+  <body class="layout-{{ page.layout | default: 'default' }}{% if page.body_class %} {{ page.body_class }}{% endif %}">
 
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     {% include header.html %}
 
     <main id="main-content" class="page-content" aria-label="Content">
-      {% if page.layout == 'home' %}
+      {% if page.layout == 'home' or page.layout == 'page' %}
         {{ content }}
       {% else %}
         <div class="wrapper">
@@ -23,6 +23,7 @@
 
     <!-- JavaScript -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/service-areas-popup.js' | relative_url }}"></script>
     
     <!-- Mobile menu functionality -->
     <script>

@@ -3,7 +3,7 @@
   Params: title (required), subtitle (optional), image (optional URL), image_alt (optional), surface (optional: surface-1, surface-2, surface-dark; default: surface-1)
 {% endcomment %}
 {% assign band_surface = include.surface | default: "surface-1" %}
-<section class="band section section--{{ band_surface }} hero-band" aria-label="Introduction">
+<section class="band section section--{{ band_surface }} hero-band{% unless page.permalink == '/services/' %} hero-band--short{% endunless %}" aria-label="Introduction">
   {% if include.image %}
   <div class="hero-band__bg" style="background-image: url('{{ include.image | relative_url }}');" role="img" aria-label="{{ include.image_alt | default: include.title | escape }}"></div>
   {% endif %}
@@ -13,5 +13,8 @@
     {% if include.subtitle %}
     <p class="hero-band__tagline">{{ include.subtitle | escape }}</p>
     {% endif %}
+    <div class="hero-band__mobile-cta">
+      <a href="tel:{{ site.company.phone | remove: '(' | remove: ')' | remove: '-' | remove: ' ' }}" class="btn btn-primary">Call Now</a>
+    </div>
   </div>
 </section>
