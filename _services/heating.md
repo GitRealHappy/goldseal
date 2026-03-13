@@ -50,13 +50,6 @@ Stay comfortable year-round with Gold Seal Mechanical's comprehensive heating se
 - Thermostat installation and programming
 - Energy efficiency assessments
 
-#### Emergency Heating Repairs
-- 24/7 emergency heating service
-- No heat emergency calls
-- System breakdowns and failures
-- Carbon monoxide testing
-- Safety inspections
-
 ### Energy-Efficient Heating Solutions
 
 We specialize in high-efficiency heating systems that reduce energy costs while keeping your home comfortable:
@@ -86,8 +79,6 @@ Our heating services are available throughout:
 - Chilliwack to North Vancouver
 - Residential and commercial properties
 - New construction and retrofits
-- Emergency service available 24/7
-
 Contact us for a free heating system assessment and quote.
 
 {% include section-close.html %}

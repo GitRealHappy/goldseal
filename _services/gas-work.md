@@ -39,7 +39,7 @@ Trust Gold Seal Mechanical for all your gas work needs. Our licensed gas fitters
 - Gas line pressure testing
 - Pipe replacement and upgrades
 - Safety inspections
-- Emergency gas leak response
+- Gas leak response
 
 #### Commercial Gas Services
 - Commercial kitchen equipment
@@ -53,7 +53,7 @@ Trust Gold Seal Mechanical for all your gas work needs. Our licensed gas fitters
 - Carbon monoxide testing
 - Safety inspections
 - Gas shut-off valve installation
-- Emergency gas line repairs
+- Gas line repairs
 
 ### Types of Gas Work We Perform:
 
@@ -94,19 +94,7 @@ Gas work requires specialized knowledge and strict adherence to safety codes:
 - **Safety First**: Strict adherence to all safety protocols and codes
 - **Quality Materials**: Only approved, high-quality gas fittings and pipes
 - **Comprehensive Testing**: Thorough testing of all gas connections
-- **Emergency Service**: Available for gas leak emergencies
-
 {% include feature-split.html heading="Safe & Reliable Gas Work" image="/assets/images/img4.png" image_alt="Gas appliance installation" surface="surface-2" body="Gas work requires precision and expertise. Our licensed gas fitters ensure every connection is safe, code-compliant, and properly tested for your peace of mind." %}
-
-## Emergency Gas Services
-
-**Gas Leak Emergency?** Call us immediately at {{ site.company.phone }}
-
-We provide 24/7 emergency response for:
-- Gas leak detection and repair
-- Emergency gas line shutoffs
-- Carbon monoxide concerns
-- Gas appliance safety issues
 
 ## Service Areas
 

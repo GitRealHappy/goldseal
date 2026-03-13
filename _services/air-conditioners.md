@@ -48,13 +48,6 @@ Beat the heat with Gold Seal Mechanical's comprehensive air conditioning service
 - Coil cleaning and maintenance
 - Pre-season system inspections
 
-#### Emergency AC Service
-- Same-day emergency repairs
-- Weekend and holiday service
-- System breakdown response
-- Refrigerant recharging
-- Component replacement
-
 ### Energy-Efficient Cooling Solutions
 
 We install high-efficiency air conditioning systems that provide superior comfort while reducing energy costs:

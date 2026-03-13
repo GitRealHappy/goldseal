@@ -18,17 +18,15 @@ service_name: "Plumbing Services"
 
 ## Comprehensive Plumbing Services
 
-Gold Seal Mechanical provides complete plumbing services for residential and commercial properties throughout the Fraser Valley and Greater Vancouver area. Our licensed plumbers handle everything from emergency repairs to new installations with professional expertise.
+Gold Seal Mechanical provides complete plumbing services for residential and commercial properties throughout the Fraser Valley and Greater Vancouver area. Our licensed plumbers handle everything from routine repairs to new installations with professional expertise.
 
 ### Our Plumbing Services Include:
 
-#### Emergency Plumbing Repairs
+#### Plumbing Repairs
 - Burst pipes and water leaks
 - Blocked drains and toilets
 - Water heater failures
 - Sump pump repairs
-- 24/7 emergency service available
-
 #### Drain & Sewer Services
 - Drain cleaning and unclogging
 - Sewer line inspection and repair
@@ -63,8 +61,6 @@ Gold Seal Mechanical provides complete plumbing services for residential and com
 - **Quality Materials**: We use only high-quality, durable materials
 - **Transparent Pricing**: Clear, upfront pricing with no hidden fees
 - **Warranty Protection**: All work backed by comprehensive warranties
-- **Emergency Service**: Available 24/7 for plumbing emergencies
-
 {% include section-close.html %}
 
 {% include feature-split.html heading="Expert Plumbing Solutions" image="/assets/images/img1.png" image_alt="Plumbing service" surface="surface-2" body="From routine maintenance to complex installations, our experienced plumbers deliver reliable solutions that last. We diagnose problems accurately and fix them right the first time." %}
